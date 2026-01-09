@@ -1,0 +1,22 @@
+﻿@using System.Globalization
+@using Sdk.Client.Colors
+@using Sdk.Client.ControlPanels.Components
+@using Sdk.Client.NavTiles.Components
+
+@inherits NavTileBase
+
+<NavTileSpecialContent Headline="@(Localization.Common.ModuleTitle + " 3")"
+                       Subline="@Localization.Common.ModuleDescription"
+                       LeftContentDescription="Another mini chart">
+    <LeftContent>
+        <IconAndValueComponent IconSrc="@(ModuleAssetHelper.GetModuleIconPath<PingClientModule>("database.svg"))"
+                               IconAlt="@Localization.Common.ModuleTitle"
+                               Value="14.58"
+                               ValueFormatter="@(value => value.ToString("F2", CultureInfo.InvariantCulture))"
+                               ValueColor="StandardHtmlColor.From(StandardColor.Red)"
+                               MeasurementUnit="GB" />
+    </LeftContent>
+    <RightContent>
+        Lorem ipsum
+    </RightContent>
+</NavTileSpecialContent>

@@ -1,0 +1,29 @@
+﻿@using Sdk.Client.Colors
+@using Sdk.Client.ControlPanels.Components
+@using Sdk.Client.Components.MiniChart
+@using Sdk.Client.NavTiles.Components
+
+@inherits NavTileBase
+
+<NavTileSpecialContent Headline="@(Localization.Common.ModuleTitle + " Live value")"
+                       Subline="@Localization.Common.ModuleDescription"
+                       LeftContentDescription="Stored pings"
+                       RightContentDescription="Some mini chart">
+    <LeftContent>
+        @if (_storedPings != -1)
+        {
+            <IconAndValueComponent IconSrc="@(ModuleAssetHelper.GetModuleIconPath<PingClientModule>("database.svg"))"
+                                   IconAlt="@Localization.Common.ModuleTitle"
+                                   Value="@_storedPings"
+                                   ValueColor="StandardHtmlColor.From(StandardColor.Green)"
+                                   MeasurementUnit="@(_storedPings == 1 ? "Ping" : "Pings")" />
+        }
+    </LeftContent>
+    <RightContent>
+        <MiniChartComponent Orientation="MiniChartOrientation.Horizontal" ShowPercentages="true">
+            <MiniChartValueComponent Minimum="0" Maximum="1000" Current="850" Label="Motors group" FillColor="StandardHtmlColor.From(StandardColor.LightGreen)" />
+            <MiniChartValueComponent Minimum="0" Maximum="100" Current="35" Label="Sellings" FillColor="StandardHtmlColor.From(StandardColor.Blue)" />
+            <MiniChartValueComponent Minimum="0" Maximum="10000" Current="6000" Label="Overall" FillColor="StandardHtmlColor.From(StandardColor.Orange)" />
+        </MiniChartComponent>
+    </RightContent>
+</NavTileSpecialContent>

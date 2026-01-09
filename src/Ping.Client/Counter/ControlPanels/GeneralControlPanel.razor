@@ -1,0 +1,161 @@
+﻿@using Sdk.Client.Components.Settings
+@using Sdk.Client.Components.Settings.Expanders
+@using Sdk.Client.ControlPanels.Components
+@using Sdk.Client.ControlPanels.Services
+
+@inherits CounterControlPanelBase<ControlPanelState>
+
+<ControlPanelPage Title="Dirty state">
+    <DescriptionBanner Title="Lorem ipsum">
+        Dolor sit amet
+    </DescriptionBanner>
+
+    <SettingsLayout>
+        <SettingsGroup Title="Edit" Subline="Settings related to edits" Expanded="@_editSettingsGroupExpanded">
+            <Expander>
+                <ComboBoxExpander Items="@_editSettingsGroupComboBoxItems" ValueSelector="@(i => i.Value)" TextSelector="@(i => i.Text)" @bind-Value="_editSettingsGroupExpanded" />
+            </Expander>
+
+            <ChildContent>
+                <SettingsField Title="Lorem ipsum dolor sit amet" Label="Dirty State">
+                    <div class="dirty-state-action-buttons">
+                        <SettingsFieldButton IconCssClass="@_onOffIconCssClasses" Text="Set" OnClick="OnSetDirtyState" />
+                        <SettingsFieldButton IconCssClass="@_onOffIconCssClasses" Text="Revert" OnClick="OnRevertDirtyState" />
+                    </div>
+                </SettingsField>
+            </ChildContent>
+        </SettingsGroup>
+
+        <SettingsGroup Title="Information"
+                       Subline="@(_settingsInformationKind == SettingsInformationKind.A ? $"Select any value but {SettingsInformationKind.A} to hide information" : $"Select {SettingsInformationKind.A} to show information")"
+                       Expanded="@(_settingsInformationKind == SettingsInformationKind.A)">
+            <Expander>
+                <ComboBoxExpander Items="@(Enum.GetValues<SettingsInformationKind>())" @bind-Value="_settingsInformationKind" />
+            </Expander>
+
+            <ChildContent>
+                <SettingsInformation>
+                    <p>
+                        List some precious information to our customers. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                        sanctus est Lorem ipsum dolor sit amet.
+                    </p>
+
+                    <ul>
+                        <li>Lorem ipsum</li>
+                        <li>Dolor sit amet, consetetur sadipscing elitr</li>
+                        <li>Sed diam nonumy eirmod tempor invidunt</li>
+                    </ul>
+                </SettingsInformation>
+            </ChildContent>
+        </SettingsGroup>
+
+        <SettingsGroup Title="More information" @bind-Expanded="@_moreInformationSettingsGroupExpanded">
+            <ChildContent>
+                <SettingsInformation>
+                    <p>
+                        List some precious information to our customers. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                        At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                        sanctus est Lorem ipsum dolor sit amet.
+                    </p>
+
+                    <ul>
+                        <li>Lorem ipsum</li>
+                        <li>Dolor sit amet, consetetur sadipscing elitr</li>
+                        <li>Sed diam nonumy eirmod tempor invidunt</li>
+                    </ul>
+                </SettingsInformation>
+            </ChildContent>
+        </SettingsGroup>
+
+        <SettingsGroup Title="Addendum" Expanded="@_addendumSettingsGroupExpanded">
+            <Expander>
+                <SwitchExpander @bind-Value="@_addendumSettingsGroupExpanded" />
+            </Expander>
+
+            <ChildContent>
+                <SettingsInformation>
+                    List some precious information to our customers ...
+                </SettingsInformation>
+            </ChildContent>
+        </SettingsGroup>
+    </SettingsLayout>
+</ControlPanelPage>
+
+<ControlPanelPage Title="Hidden perks">
+    <DescriptionBanner Title="Consetetur sadipscing elitr">
+        Sed diam nonumy eirmod tempor
+    </DescriptionBanner>
+
+    <SettingsLayout>
+        <SettingsGroup Title="Notifications" @bind-Expanded="_notificationsSettingsGroupExpanded">
+            <SettingsField Label="Subject template">
+                <SettingsFieldTextBox Placeholder="Name" @bind-Value="@_notificationSubjectTemplate" />
+            </SettingsField>
+
+            <SettingsField Label="Content template">
+                Lorem ipsum dolor sit amet
+            </SettingsField>
+
+            <SettingsField>
+                <SettingsFieldButton Text="Edit" />
+            </SettingsField>
+
+            @for (var i = 0; i < _notificationMetadata.Count; i++)
+            {
+                var label = i == 0 ? "Meta data" : null;
+                var notificationMetadata = _notificationMetadata[i];
+
+                <SettingsField Label="@label" @key="notificationMetadata">
+                    <SettingsFieldTextBox Placeholder="@notificationMetadata.Placeholder" @bind-Value="@notificationMetadata.Value"  />
+                </SettingsField>
+            }
+
+            <SettingsStepper MinusEnabled="@(_notificationMetadata.Count > 1)"
+                             PlusEnabled="@(_notificationMetadata.Count < 5)"
+                             OnMinus="@RemoveNotificationMetadata"
+                             OnPlus="@AddNotificationMetadata" />
+
+            <SettingsField Label="Statistics">
+                18 sent, 16 acknowledged
+            </SettingsField>
+
+            <SettingsGroup Title="Hidden UI elements" Subline="Hidden UI elements related to notifications" @bind-Expanded="_notificationsHiddenUiElementsSettingsGroupExpanded">
+                <SettingsField Label="Control panels">
+                    <SettingsFieldButton Text="Unlock" OnClick="@OnUnlockNotificationSettings" />
+                </SettingsField>
+            </SettingsGroup>
+        </SettingsGroup>
+
+        <SettingsGroup Title="Additional tabs">
+            <SettingsField Label="Reloading tab">
+                <SettingsFieldButton Text="Unlock" OnClick="@OnToggleReloadingTab" />
+            </SettingsField>
+        </SettingsGroup>
+    </SettingsLayout>
+</ControlPanelPage>
+
+@if (_hasReloadingTab)
+{
+    <ControlPanelPage Title="Reloading">
+        <DescriptionBanner Title="Vero eos et accusam">
+            Justo duo dolores et ea rebum
+        </DescriptionBanner>
+
+        <SettingsLayout>
+            <SettingsGroup Title="Control panel">
+                <SettingsField Label="Action">
+                    <SettingsFieldButton Text="Reload" OnClick="@OnReloadControlPanel" />
+                </SettingsField>
+            </SettingsGroup>
+
+            <SettingsGroup Title="Popup" @bind-Expanded="_reloadingPopupSettingsGroupExpanded">
+                <SettingsField Label="Action">
+                    <SettingsFieldButton Text="Reload" OnClick="@OnReloadPopup" />
+                </SettingsField>
+            </SettingsGroup>
+        </SettingsLayout>
+    </ControlPanelPage>
+}

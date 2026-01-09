@@ -1,0 +1,12 @@
+﻿@using Sdk.Authorization
+@using Sdk.Client.NavTiles.Components
+
+@inherits NavTileBase
+@attribute [ModuleAuthorize<PingClientModule>(featureName: Public.Constants.CounterFeatureName)]
+
+<NavTileStandardContent Headline="@Localization.Common.ModuleTitle"
+                        Subline="@Localization.Common.ModuleDescription"
+                        IconSrc="@(ModuleAssetHelper.GetModuleIconPath<PingClientModule>("fan.svg"))"
+                        IconAlt="@Localization.Common.ModuleTitle"
+                        OnContentLoading="@ContentLoading"
+                        OnContentReady="@ContentReady" />

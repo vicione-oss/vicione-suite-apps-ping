@@ -1,0 +1,86 @@
+@using Sdk.MessageBanner.Contracts;
+
+@inherits ModulePageBase<PingClientModule>
+@attribute [Route(PingClientModule.CounterPageRoute)]
+
+<div class="counter-page">
+    <div>
+        <h3>@Localization.Common.ModuleTitle</h3>
+
+        <p>@Localization.Common.ModuleDescription</p>
+
+        <p>
+            <button @onclick="@DecrementCounter"
+                    class="btn btn-primary"
+                    id="decrement-button"
+                    type="button">
+                @Localization.CounterPage.DecrementCounter
+            </button>
+
+            <button @onclick="@ResetCounter"
+                    class="btn btn-primary"
+                    id="reset-button"
+                    type="button">
+                @Localization.CounterPage.ResetCounter
+            </button>
+
+            <button @onclick="@IncrementCounter"
+                    class="btn btn-primary"
+                    id="increment-button"
+                    type="button">
+                @Localization.CounterPage.IncrementCounter
+            </button>
+
+            <button @onclick="@CallIsolatedJavaScript"
+                    class="btn btn-primary">
+                @Localization.CounterPage.CallJavascript
+            </button>
+        </p>
+        <p id="increment-result">
+            <em>@string.Format(Localization.CounterPage.ClickedXTimesFormat, SimpleCounter.Value)</em>
+        </p>
+    </div>
+
+    <div class="message-banner">
+        <h4>MessageBanner</h4>
+        <div class="message-banner-form">
+            <label>Type: </label>
+            <select name="Type" @onchange="OnMessageTypeChanged">
+                @foreach (var type in Enum.GetValues(typeof(MessageType)))
+                {
+                    <option value="@type">@type</option>
+                }
+            </select>
+
+            <label>Description: </label>
+            <input type="text" @onchange="OnDescriptionChanged" />
+
+            <button class="btn btn-primary"
+                    @onclick="() => MessageBannerService.ShowMessageBanner(_messageType, _description)">
+                @Localization.CounterPage.ShowBanner
+            </button>
+            <button class="btn btn-primary"
+                    @onclick="MessageBannerService.CloseMessageBanner">
+                @Localization.CounterPage.RemoveBanner
+            </button>
+        </div>
+    </div>
+
+    <div class="color-area">
+        <h4>Suite Color Styles</h4>
+        <div class="color-box">
+            <div class="background">background</div>
+            <div class="background-dark">background-dark</div>
+            <div class="content">content</div>
+            <div class="content-dark">content-dark</div>
+            <div class="content">content</div>
+            <div class="content-dark">content-dark</div>
+            <div class="disabled">disabled</div>
+            <div class="disabled-dark">disabled-dark</div>
+            <div class="accent">accent</div>
+            <div class="accent-dark">accent-dark</div>
+            <div class="accent-background">accent-background</div>
+        </div>
+    </div>
+
+</div>

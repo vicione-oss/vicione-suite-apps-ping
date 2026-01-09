@@ -1,0 +1,26 @@
+﻿@using Sdk.Client.Colors
+@using Sdk.Client.ControlPanels.Components
+@using Sdk.Client.Components.MiniChart
+@using Sdk.Client.NavTiles.Components
+
+@inherits NavTileBase
+
+<NavTileSpecialContent Headline="Sales income"
+                       Subline="Cash income overview shows your money when paid by customers"
+                       LeftContentDescription="in 1000k"
+                       RightContentDescription="Figures Q1">
+    <LeftContent>
+        <IconAndValueComponent IconSrc="@(ModuleAssetHelper.GetModuleIconPath<PingClientModule>("ticket.svg"))"
+                               IconAlt="Sales income icon"
+                               Value="19.84"
+                               MeasurementUnit="€" />
+    </LeftContent>
+    <RightContent>
+        <MiniChartComponent Orientation="MiniChartOrientation.Vertical">
+            <MiniChartValueComponent Minimum="0" Maximum="100" Current="35" Label="A1" FillColor="StandardHtmlColor.From(StandardColor.Blue)" />
+            <MiniChartValueComponent Minimum="0" Maximum="100" Current="80" Label="B2" FillColor="StandardHtmlColor.From(StandardColor.Orange)" />
+            <MiniChartValueComponent Minimum="0" Maximum="100" Current="55" Label="C2" FillColor="StandardHtmlColor.From(StandardColor.LightGreen)" />
+            <MiniChartValueComponent Minimum="0" Maximum="100" Current="95" Label="D4" FillColor="StandardHtmlColor.From(StandardColor.Red)" />
+        </MiniChartComponent>
+    </RightContent>
+</NavTileSpecialContent>

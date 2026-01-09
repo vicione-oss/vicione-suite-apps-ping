@@ -1,0 +1,22 @@
+﻿@use "./../../../../shared/styles/colors";
+@use "./../../../../shared/styles/typography";
+
+button {
+    padding: 0px 24px;
+    display: flex;
+    align-items: center;
+    font-weight: typography.$font-weight-light;
+    color: colors.$color-font;
+    font-size: 12px;
+    letter-spacing: .4px;
+    margin-bottom: 16px;
+
+    ::deep .icon {
+        color: colors.$color-accent;
+        margin-right: 8px;
+    }
+
+    &:hover {
+        color: colors.$color-font-light;
+    }
+}

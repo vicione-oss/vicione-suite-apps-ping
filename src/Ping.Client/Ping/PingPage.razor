@@ -1,0 +1,144 @@
+@using ViciOne.Ui.Blazor.Components.Grid.Components
+@using ViciOne.Ui.Blazor.Components.Grid.Components.ActionButtons
+@using ViciOne.Ui.Blazor.Components.Grid.Components.Columns
+@attribute [Route(PingClientModule.PingPageRoute)]
+@inherits ModulePageBase<PingClientModule>
+
+<div class="ping-page">
+    <h3>Ping to backend</h3>
+    @* <p> *@
+    @*     This component demonstrates a call to the backend and receives the answer.<br> *@
+    @*     <em>Current Server time: @(_currentServerTime.ToString("G"))</em> *@
+    @* </p> *@
+
+    <div style="float: right; margin-right: 20px;">
+        @if (PingState.SelectedPing == null)
+        {
+            <p>
+                <em>no ping selected</em>
+            </p>
+        }
+        else
+        {
+            <h4>Selected Ping</h4>
+            <p>
+                <em>Originally created at: @(PingState.SelectedPing.Created.ToString("G"))</em><br>
+                <em>Id: @(PingState.SelectedPing.Id)</em><br>
+                <em>Origin: @(PingState.PingResultOrigin)</em><br>
+                <em>Message: @(PingState.SelectedPing.Message)</em>
+            </p>
+        }
+    </div>
+
+    <div class="flex-container">
+        <input @bind-value="@(SelectedIdString)"
+               type="text" class="form-control" readonly />
+
+        <button @onclick="@RequestSelected"
+                class="btn btn-primary"
+                type="button">
+            @Localization.PingPage.RequestPing
+        </button>
+
+        <button @onclick="@RequestAll"
+                class="btn btn-primary"
+                type="button">
+            @Localization.PingPage.RequestAllPings
+        </button>
+    </div>
+
+    <div class="flex-container">
+        <input @bind-value="@CreateCommandDelayMs"
+               type="text" class="form-control" readonly />
+
+        <button @onclick="@CreateDelayed"
+                class="btn btn-primary"
+                type="button">
+            @Localization.PingPage.CreatePingDelayed
+        </button>
+
+        <button @onclick="@Create"
+                class="btn btn-primary"
+                type="button">
+            @Localization.PingPage.CreatePing
+        </button>
+    </div>
+
+    <div class="flex-container">
+        <label for="ThrowOnConsume">Consume Exception</label>
+        <input @bind-value="ThrowOnConsume"
+               type="checkbox" id="ThrowOnConsume" name="ThrowOnConsume" />
+
+        <label for="ThrowOnRetry">Throw On Retry</label>
+        <input @bind-value="ThrowOnRetry"
+               type="checkbox" id="ThrowOnRetry" name="ThrowOnRetry" />
+    </div>
+
+    <div class="flex-container">
+        <label for="LastActivity">Last activity</label>
+        <div id="LastActivity">@LastActivity</div>
+    </div>
+
+    <div class="flex-container">
+        <label for="ControllerApi">Controller-API</label>
+        <div id="ControllerApi"><a href="/api/ping" target="_blank">API.GetPings</a></div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(LastError))
+    {
+        <div class="position-fixed bottom-0 right-0 p-3"
+             style="z-index: 5; right: 0; bottom: 0;">
+
+            <div aria-atomic="true"
+                 aria-live="assertive"
+                 class="toast hide"
+                 data-delay="2000"
+                 id="liveToast"
+                 role="alert">
+
+                <div class="toast-header">
+                    <img src="..." class="rounded mr-2" alt="...">
+                    <strong class="mr-auto">Bootstrap</strong>
+                    <small>83 ms ago</small>
+                    <button aria-label="Close"
+                            class="ml-2 mb-1 close"
+                            data-dismiss="toast"
+                            type="button">
+
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    @LastError
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (PingState.StoredPings == null)
+    {
+        <p>
+            <em>Loading...</em>
+        </p>
+    }
+    else
+    {
+        <Grid Items="_pingsQueryable">
+            <ActionButtons>
+                <DeleteGridActionButton Enabled="_isSinglePingSelected"
+                                        OnClick="Delete" />
+            </ActionButtons>
+
+            <ChildContent>
+                <ItemSelectColumn KeySelector="@(item => item.Id)" Selection="@PingGridItemSelection" />
+                <PropertyColumn Property="@(item => item.Id)" />
+                <PropertyColumn Property="@(item => item.RequestId)" />
+                <PropertyColumn Property="@(item => item.Created)" />
+                <TemplateColumn Title="API">
+                    <a href=@("/api/ping/" + context.Id.ToString()) target="_blank">Get</a>
+                </TemplateColumn>
+            </ChildContent>
+        </Grid>
+    }
+
+</div>

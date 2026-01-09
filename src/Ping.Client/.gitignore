@@ -1,0 +1,7 @@
+# Files provided by ViciOne.Ui.MonochromeIcons.Assets
+wwwroot/icons/monochrome-icons
+Styles/icons/monochrome-icons
+wwwroot/js/*
+
+# Node
+node_modules

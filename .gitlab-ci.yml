@@ -1,0 +1,33 @@
+include:
+  - project: 'acx/tooling/ci-templates'
+    file: 'module/v2/dotnet.yml'
+
+variables:
+  PROJECT_NAME: Ping
+  MODULE_FULLNAME: ViciOne.Suite.Ping
+  IMAGE_NAME: mcr.microsoft.com/dotnet/sdk:9.0
+
+default:
+  image: ${IMAGE_NAME}
+
+.install_nodejs: &install_nodejs
+  - curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+  - apt update && apt install -y nodejs
+
+.install_npm_packages: &install_npm_packages
+  - cd src/Ping.Client
+  - npm install
+  - cd -
+
+.run_eslint: &run_eslint
+  - cd src/Ping.Client
+  - npx eslint .
+  - cd -
+
+# Reference for pre build actions.
+# Do not remove! It's used/referenced in the downstream CI config.
+.before_build_script: &before_build_script
+  - echo "Before build actions"
+  - *install_nodejs
+  - *install_npm_packages
+  - *run_eslint

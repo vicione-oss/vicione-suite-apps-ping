@@ -1,0 +1,19 @@
+﻿@using global::Ping.Public
+@using Sdk.Authorization
+@using Sdk.Client.Components.CircularProgressBar
+@using Sdk.Client.Colors
+@using Sdk.Client.NavTiles.Components
+
+@inherits NavTileBase
+@attribute [ModuleAuthorize<PingClientModule>(featureName: Constants.ProgressFeatureName)]
+
+<NavTileSpecialContent Headline="@(Localization.Common.ModuleTitle + " 5")"
+                       Subline="@Localization.Common.ModuleDescription"
+                       RightContentDescription="HD space nearly at limit">
+    <LeftContent>
+        Lorem ipsum
+    </LeftContent>
+    <RightContent>
+        <CircularProgressBarComponent Minimum="0" Maximum="8192" Current="6963.2" Label="Used space" ProgressSpinnerColor="StandardHtmlColor.From(StandardColor.Orange)" />
+    </RightContent>
+</NavTileSpecialContent>

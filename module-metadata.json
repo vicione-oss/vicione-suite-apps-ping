@@ -1,0 +1,12 @@
+﻿{
+    "Name": "ViciOne.Suite.Ping",
+    "Title": "Suite Ping Demo",
+    "Description": "Use this demo module to use pings and counter.",
+    "Version": "__VERSION__",
+    "MinSuiteSdkVersion": "1.1.0",
+    "Company": "ifm software",
+    "ProjectUrl": "https://gitlab.i40.ifm-datalink.net/acx/vo-suite/modules/ping",
+    "ReadmeUrl": "https://gitlab.i40.ifm-datalink.net/acx/vo-suite/modules/ping/-/blob/master/README.md?ref_type=heads",
+    "Published": "2025-09-10T12:00:00",
+    "Options": []
+}

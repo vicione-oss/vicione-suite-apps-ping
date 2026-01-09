@@ -1,0 +1,10 @@
+﻿@using Sdk.Client.NavTiles.Components
+
+@inherits NavTileBase
+
+<NavTileStandardContent Headline="@Localization.Common.ModuleTitle"
+                        Subline="@Localization.Common.ModuleDescription"
+                        IconSrc="@(ModuleAssetHelper.GetModuleIconPath<PingClientModule>("ping.svg"))"
+                        IconAlt="Toggler icon"
+                        OnContentLoading="@ContentLoading"
+                        OnContentReady="@ContentReady" />

@@ -1,0 +1,10 @@
+﻿@using Sdk.Client.NavTiles.Components
+
+@inherits NavTileBase
+
+<NavTileStandardContent Headline="Wild cards"
+                        Subline="@_subline"
+                        IconSrc="@(ModuleAssetHelper.GetModuleIconPath<PingClientModule>("wild-cards.svg"))"
+                        IconAlt="Wild cards icon"
+                        OnContentLoading="@ContentLoading"
+                        OnContentReady="@ContentReady" />

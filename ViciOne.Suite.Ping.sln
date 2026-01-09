@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ping.Backend", "src\Ping.Backend\Ping.Backend.csproj", "{CAD7F907-54CC-4252-8E85-1D61777B8E77}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ping.Client", "src\Ping.Client\Ping.Client.csproj", "{7A5EB9F6-5DB4-4FC4-9EDB-75F7A00EB70B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ping.Public", "src\Ping.Public\Ping.Public.csproj", "{8732081E-C333-4BA4-883B-C7399DB7979D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ping.Tests", "tests\Ping.Tests\Ping.Tests.csproj", "{AC4DBB36-F8C6-47CC-9B99-01BC38801021}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{62C96084-1AEE-4512-AD2D-140C3B1F6FC7}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		.gitlab-ci.yml = .gitlab-ci.yml
+		.globalconfig = .globalconfig
+		CHANGELOG.md = CHANGELOG.md
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+		module-metadata.json = module-metadata.json
+		NuGet.Config = NuGet.Config
+		README.md = README.md
+		VERSION = VERSION
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{1211CFE4-273E-4738-8F8D-51B4D0EE4666}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ping.Deployment", "src\Ping.Deployment\Ping.Deployment.csproj", "{39A3CE23-B3CE-4C9C-99A1-34FD2D801350}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAD7F907-54CC-4252-8E85-1D61777B8E77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAD7F907-54CC-4252-8E85-1D61777B8E77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAD7F907-54CC-4252-8E85-1D61777B8E77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAD7F907-54CC-4252-8E85-1D61777B8E77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A5EB9F6-5DB4-4FC4-9EDB-75F7A00EB70B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A5EB9F6-5DB4-4FC4-9EDB-75F7A00EB70B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A5EB9F6-5DB4-4FC4-9EDB-75F7A00EB70B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A5EB9F6-5DB4-4FC4-9EDB-75F7A00EB70B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8732081E-C333-4BA4-883B-C7399DB7979D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8732081E-C333-4BA4-883B-C7399DB7979D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8732081E-C333-4BA4-883B-C7399DB7979D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8732081E-C333-4BA4-883B-C7399DB7979D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC4DBB36-F8C6-47CC-9B99-01BC38801021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC4DBB36-F8C6-47CC-9B99-01BC38801021}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC4DBB36-F8C6-47CC-9B99-01BC38801021}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC4DBB36-F8C6-47CC-9B99-01BC38801021}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39A3CE23-B3CE-4C9C-99A1-34FD2D801350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39A3CE23-B3CE-4C9C-99A1-34FD2D801350}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39A3CE23-B3CE-4C9C-99A1-34FD2D801350}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39A3CE23-B3CE-4C9C-99A1-34FD2D801350}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{39A3CE23-B3CE-4C9C-99A1-34FD2D801350} = {1211CFE4-273E-4738-8F8D-51B4D0EE4666}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A9441FFC-2FE5-4BAD-847E-CF193F29FBAD}
+	EndGlobalSection
+EndGlobal
