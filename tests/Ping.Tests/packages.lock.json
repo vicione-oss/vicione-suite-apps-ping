@@ -2060,14 +2060,14 @@
       "ViciOne.Suite.Ping.Backend": {
         "type": "Project",
         "dependencies": {
-          "ViciOne.Suite.Ping.Public": "[0.12.0, )",
+          "ViciOne.Suite.Ping.Public": "[0.13.0, )",
           "ViciOne.Suite.Sdk.Backend": "[1.1.0, )"
         }
       },
       "ViciOne.Suite.Ping.Client": {
         "type": "Project",
         "dependencies": {
-          "ViciOne.Suite.Ping.Public": "[0.12.0, )",
+          "ViciOne.Suite.Ping.Public": "[0.13.0, )",
           "ViciOne.Suite.Sdk.Client": "[1.1.0, )"
         }
       },
