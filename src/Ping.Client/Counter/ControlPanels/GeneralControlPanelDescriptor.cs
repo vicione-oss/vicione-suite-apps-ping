@@ -6,6 +6,6 @@ namespace Ping.Client.Counter.ControlPanels;
 
 public sealed class GeneralControlPanelDescriptor : IControlPanelDescriptor<GeneralControlPanel>
 {
-    public string IconPath => ModuleAssetHelper.GetModuleIconPath<PingClientModule>("fan.svg");
+    public Uri? IconUrl => ModuleAssetHelper.GetModuleIconUrl<PingClientModule>("fan.svg");
     public string Title => CommonVocabulary.General;
 }

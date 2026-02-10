@@ -18,13 +18,13 @@ public sealed class PingPageTests
     public void PageGetsRendered()
     {
         // Arrange
-        using var ctx = new TestContext();
+        using var ctx = new BunitContext();
         ctx.SetupSuiteServices(setup =>
         {
             setup.Services.AddLocalization<PingClientModule>();
 
             setup.ClientMediator.Request<GetPingsRequest, GetPingsResponse>(
-                Arg.Any<GetPingsRequest>(), Arg.Any<CancellationToken>())
+                Arg.Any<GetPingsRequest>(), Xunit.TestContext.Current.CancellationToken)
                 .Returns(new GetPingsResponse([]));
         });
         ctx.Services.AddSingleton(new PingState());
@@ -37,6 +37,6 @@ public sealed class PingPageTests
         rootModule.Mode = JSRuntimeMode.Loose;
 
         // Act + Assert
-        var sut = ctx.RenderComponent<PingPage>();
+        var sut = ctx.Render<PingPage>();
     }
 }

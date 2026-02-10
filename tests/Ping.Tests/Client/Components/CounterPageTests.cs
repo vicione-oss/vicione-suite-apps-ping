@@ -22,14 +22,14 @@ public sealed class CounterPageTests
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
 
-            using var ctx = new TestContext();
+            using var ctx = new BunitContext();
             ctx.Services.AddLocalization();
             ctx.Services.AddSingleton<SimpleCounter>();
             ctx.Services.AddSingleton(Substitute.For<ILayoutService>());
             ctx.Services.AddSingleton(Substitute.For<IActiveNotificationElementPolicy>());
             ctx.Services.AddSingleton(Substitute.For<IJsInterop>());
             ctx.Services.AddSingleton(Substitute.For<IMessageBannerService>());
-            var sut = ctx.RenderComponent<CounterPage>();
+            var sut = ctx.Render<CounterPage>();
 
             sut.Find("#increment-result").Children[0].MarkupMatches("<em>You have clicked 0 times</em>");
 

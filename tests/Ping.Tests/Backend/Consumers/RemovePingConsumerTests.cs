@@ -41,7 +41,7 @@ public sealed class RemovePingConsumerTests : TestWithDbContextSqlite<PingDbCont
         var consumerHarness = tester.Services.GetRequiredService<IConsumerTestHarness<RemovePingConsumer>>();
 
         // did the actual consumer consume the message
-        Assert.True(await consumerHarness.Consumed.Any<RemovePing>());
+        Assert.True(await consumerHarness.Consumed.Any<RemovePing>(TestContext.Current.CancellationToken));
     }
 
     [Fact]
@@ -57,10 +57,10 @@ public sealed class RemovePingConsumerTests : TestWithDbContextSqlite<PingDbCont
         await tester.TestCommand<RemovePing, RemovePingConsumer>(command, command.PingId);
 
         // Assert
-        Assert.False(await tester.Harness.Published.Any<Fault<PingError>>());
+        Assert.False(await tester.Harness.Published.Any<Fault<PingError>>(TestContext.Current.CancellationToken));
         Assert.True(await tester.Harness.Published.Any<PingDeleted>(r =>
-            Equals(r.Context.Message.PingId, ping.Id)));
-        Assert.False(await dbContext.Pings.AnyAsync(p => p.Id == ping.Id));
+            Equals(r.Context.Message.PingId, ping.Id), TestContext.Current.CancellationToken));
+        Assert.False(await dbContext.Pings.AnyAsync(p => p.Id == ping.Id, TestContext.Current.CancellationToken));
     }
 
     [Fact]
@@ -74,8 +74,8 @@ public sealed class RemovePingConsumerTests : TestWithDbContextSqlite<PingDbCont
         await tester.TestCommand<RemovePing, RemovePingConsumer>(command, command.PingId);
 
         // Assert
-        Assert.False(await tester.Harness.Published.Any<Fault<PingError>>());
-        Assert.False(await tester.Harness.Published.Any<PingDeleted>());
+        Assert.False(await tester.Harness.Published.Any<Fault<PingError>>(TestContext.Current.CancellationToken));
+        Assert.False(await tester.Harness.Published.Any<PingDeleted>(TestContext.Current.CancellationToken));
     }
 
     /// <summary>
@@ -99,14 +99,14 @@ public sealed class RemovePingConsumerTests : TestWithDbContextSqlite<PingDbCont
         var consumer = serviceProvider.GetRequiredService<RemovePingConsumer>();
         var consumerHarness = harness.Consumer(() => consumer);
 
-        await harness.Start();
+        await harness.Start(TestContext.Current.CancellationToken);
         try
         {
             // put the command to the test harness consumer bus
-            await harness.InputQueueSendEndpoint.Send(new RemovePing(Guid.NewGuid()), CancellationToken.None);
+            await harness.InputQueueSendEndpoint.Send(new RemovePing(Guid.NewGuid()), TestContext.Current.CancellationToken);
 
             // check if the command was consumed
-            Assert.True(await consumerHarness.Consumed.Any<RemovePing>());
+            Assert.True(await consumerHarness.Consumed.Any<RemovePing>(TestContext.Current.CancellationToken));
         }
         finally
         {
