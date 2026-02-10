@@ -46,9 +46,9 @@ public class CreatePingConsumerTests : TestWithDbContextSqlite<PingDbContextSqli
         // Act + Assert
         await tester.TestCommand<CreatePing, CreatePingConsumer>(command, command.PingId);
 
-        Assert.False(await tester.Harness.Published.Any<PingError>());
-        Assert.True(await tester.Harness.Published.Any<PingCreated>());
-        Assert.True(await dbContext.Pings.AnyAsync(p => p.Id == command.PingId));
+        Assert.False(await tester.Harness.Published.Any<PingError>(TestContext.Current.CancellationToken));
+        Assert.True(await tester.Harness.Published.Any<PingCreated>(TestContext.Current.CancellationToken));
+        Assert.True(await dbContext.Pings.AnyAsync(p => p.Id == command.PingId, TestContext.Current.CancellationToken));
     }
 
     [Fact]
@@ -94,6 +94,6 @@ public class CreatePingConsumerTests : TestWithDbContextSqlite<PingDbContextSqli
         await Assert.ThrowsAsync<DbUpdateException>(() => tester.TestCommandFault<CreatePing, CreatePingConsumer>(command, command.PingId));
 
         // Assert
-        Assert.True(await tester.Harness.Published.Any<PingError>());
+        Assert.True(await tester.Harness.Published.Any<PingError>(TestContext.Current.CancellationToken));
     }
 }

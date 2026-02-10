@@ -12,7 +12,7 @@
     <LeftContent>
         @if (_storedPings != -1)
         {
-            <IconAndValueComponent IconSrc="@(ModuleAssetHelper.GetModuleIconPath<PingClientModule>("database.svg"))"
+            <IconAndValueComponent IconUrl="@(ModuleAssetHelper.GetModuleIconUrl<PingClientModule>("database.svg"))"
                                    IconAlt="@Localization.Common.ModuleTitle"
                                    Value="@_storedPings"
                                    ValueColor="StandardHtmlColor.From(StandardColor.Green)"
