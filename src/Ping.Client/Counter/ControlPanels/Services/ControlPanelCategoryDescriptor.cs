@@ -2,7 +2,7 @@
 using Sdk.Client.ControlPanels.Services;
 using Sdk.Client.Modules;
 
-namespace Ping.Client.Counter.ControlPanels;
+namespace Ping.Client.Counter.ControlPanels.Services;
 
 public sealed class ControlPanelCategoryDescriptor : IControlPanelCategoryDescriptor
 {

@@ -22,7 +22,7 @@ internal static class PingDbContextExtensions
         var fixture = new Fixture();
 
         PingResult? firstPing = null;
-        for (int i = 0; i < seedPingsCount; i++)
+        for (var i = 0; i < seedPingsCount; i++)
         {
             var ping = fixture.Create<PingResult>();
             context.Pings.Add(ping);
@@ -30,7 +30,7 @@ internal static class PingDbContextExtensions
                 firstPing = ping;
         }
 
-        context.Instance.SaveChanges();
+        context.SaveChanges();
         return firstPing ?? throw new InvalidOperationException("No ping was seeded");
     }
 }

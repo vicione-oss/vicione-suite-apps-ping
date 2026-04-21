@@ -2,14 +2,17 @@
 
 ## 0.13.0 - Unreleased
 
+### Added
+
+- Added `ViciOne.Suite.Sdk.Localization` package version `3.3.0` as a dependency to get localization resources for the application
+
 ### Update
 
-- `.NET` framework, updated to version `10.0.2`
-- `AspNetCore.SassCompiler` package, update to version `1.97.1`
-- `Microsoft.EntityFrameworkCore.Design` package, update to version `10.0.2`
+- `.NET` framework, updated to version `10.0.6`
+- `AspNetCore.SassCompiler` package, update to version `1.99.0`
 - `Microsoft.TypeScript.MSBuild` package, update to version `5.9.3`
-- `ViciOne.Suite.Sdk` packages, update to version `2.0.0-ci2314426369`
-- `ViciOne.Ui.MonochromeIcons.Assets` package, update to version `4.1.0`
+- `ViciOne.Suite.Sdk` packages, update to version `2.0.0`
+- `ViciOne.Ui.MonochromeIcons.Assets` package, update to version `4.7.0`
 
 ## 0.12.0 - 2025-12-04
 

@@ -1,22 +1,23 @@
 ﻿<Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <ViciOneSuiteSdkVersion>2.0.0-ci2314426369</ViciOneSuiteSdkVersion>
+    <ViciOneSuiteSdkVersion>2.0.0</ViciOneSuiteSdkVersion>
   </PropertyGroup>
   <ItemGroup>
     <GlobalPackageReference Include="ViciOne.CodeAnalysis" Version="1.6.0" />
-    <PackageVersion Include="AspNetCore.SassCompiler" Version="1.97.1" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.2" />
+    <PackageVersion Include="AspNetCore.SassCompiler" Version="1.99.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.6" />
     <PackageVersion Include="Microsoft.TypeScript.MSBuild" Version="5.9.3" />
     <PackageVersion Include="ViciOne.Suite.Sdk" Version="$(ViciOneSuiteSdkVersion)" />
     <PackageVersion Include="ViciOne.Suite.Sdk.Backend" Version="$(ViciOneSuiteSdkVersion)" />
     <PackageVersion Include="ViciOne.Suite.Sdk.Client" Version="$(ViciOneSuiteSdkVersion)" />
     <PackageVersion Include="ViciOne.Suite.Sdk.Deployment" Version="$(ViciOneSuiteSdkVersion)" />
-    <PackageVersion Include="ViciOne.Ui.MonochromeIcons.Assets" Version="4.1.0" />
+    <PackageVersion Include="ViciOne.Ui.Localization" Version="3.3.0" />
+    <PackageVersion Include="ViciOne.Ui.MonochromeIcons.Assets" Version="4.7.0" />    
     <!--Used for tests only:-->
     <PackageVersion Include="AutoFixture" Version="4.18.1" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
     <PackageVersion Include="ViciOne.Suite.Sdk.Testing" Version="$(ViciOneSuiteSdkVersion)" />
     <PackageVersion Include="xunit.v3" Version="3.2.2" />
     <PackageVersion Include="xunit.analyzers" Version="1.27.0" />

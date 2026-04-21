@@ -40,7 +40,7 @@ public sealed class RemovePingConsumer(IPingDbContext dbContext, ILogger<RemoveP
         try
         {
             var deletedPing = _dbContext.Pings.Remove(ping).Entity;
-            if (await _dbContext.Instance.SaveChangesAsync(context.CancellationToken) > 0)
+            if (await _dbContext.SaveChangesAsync(context.CancellationToken) > 0)
             {
                 // this event just transports the id and the ui can act directly on it
                 // therefore it doesn't matter if the event is triggered by master before

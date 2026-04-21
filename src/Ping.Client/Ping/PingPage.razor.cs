@@ -233,7 +233,6 @@ public sealed partial class PingPage :
             var data = await Mediator.Request<GetPingsRequest, GetPingsResponse>(new(null)
             {
                 ThrowOnConsume = ThrowOnConsume,
-                ThrowOnRetry = ThrowOnRetry
             });
 
             PingState.StoredPings = data.Result;
@@ -258,7 +257,6 @@ public sealed partial class PingPage :
             var response = await Mediator.Request<GetPingsRequest, GetPingsResponse>(new(pingId)
             {
                 ThrowOnConsume = ThrowOnConsume,
-                ThrowOnRetry = ThrowOnRetry
             });
 
             PingState.SelectedPing = response.Result.FirstOrDefault();
