@@ -1,9 +1,9 @@
-﻿using MassTransit;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Ping.Backend.DbContext;
 using Ping.Public.Events;
 using Ping.Public.Requests;
+using Sdk.Backend.Messaging;
 using Sdk.Messaging;
 
 namespace Ping.Backend.Consumers;
@@ -19,9 +19,9 @@ public sealed class GetPingsConsumer(IPingDbContext dbContext, ILogger<GetPingsC
     private readonly IPingDbContext _dbContext = dbContext;
     private readonly ILogger<GetPingsConsumer> _logger = logger;
 
-    protected override Task<GetPingsResponse> HandleException(ConsumeContext<GetPingsRequest> context, Exception e)
+    public override Task<GetPingsResponse> HandleException(GetPingsRequest message, Exception e, CancellationToken cancellationToken)
     {
-        if (context.Message.ThrowOnConsume && (context.Message.ThrowOnRetry || context.GetRetryAttempt() <= 0))
+        if (message.ThrowOnConsume)
             throw e;
 
         _logger.LogError(e, "Consume {Request} failed.", nameof(GetPingsRequest));
@@ -29,22 +29,19 @@ public sealed class GetPingsConsumer(IPingDbContext dbContext, ILogger<GetPingsC
         return Task.FromResult(new GetPingsResponse([], new ErrorInfo(PingError.UnknownError, e.Message)));
     }
 
-    protected override async Task<GetPingsResponse> Respond(ConsumeContext<GetPingsRequest> context)
+    public override async Task<GetPingsResponse> Respond(GetPingsRequest message, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Consuming {Request} CorrelationId {CorrelationId}. Attempt: {Attempt}",
-            nameof(GetPingsRequest), context.CorrelationId, context.GetRetryAttempt());
-
-        if (context.Message.ThrowOnConsume && (context.Message.ThrowOnRetry || context.GetRetryAttempt() <= 0))
+        if (message.ThrowOnConsume)
         {
             // if all retry attempts fail the request client throws an exception 
             throw new InvalidOperationException("This exception was requested by request");
         }
 
         var pingRequest = _dbContext.Pings.AsNoTracking();
-        if (context.Message.PingId is not null)
-            pingRequest = pingRequest.Where(p => p.Id == context.Message.PingId);
+        if (message.PingId is not null)
+            pingRequest = pingRequest.Where(p => p.Id == message.PingId);
 
-        var pingResults = await pingRequest.ToListAsync(context.CancellationToken);
+        var pingResults = await pingRequest.ToListAsync(cancellationToken);
 
         return new GetPingsResponse(pingResults);
     }

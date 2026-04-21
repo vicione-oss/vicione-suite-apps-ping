@@ -1,11 +1,13 @@
 @using ViciOne.Ui.Blazor.Components.Grid.Components
 @using ViciOne.Ui.Blazor.Components.Grid.Components.ActionButtons
 @using ViciOne.Ui.Blazor.Components.Grid.Components.Columns
+@using ViciOne.Ui.Localization.Resources
+
 @attribute [Route(PingClientModule.PingPageRoute)]
 @inherits ModulePageBase<PingClientModule>
 
 <div class="ping-page">
-    <h3>Ping to backend</h3>
+    <h3>@Localization.PingPage.PingToBackend</h3>
     @* <p> *@
     @*     This component demonstrates a call to the backend and receives the answer.<br> *@
     @*     <em>Current Server time: @(_currentServerTime.ToString("G"))</em> *@
@@ -15,17 +17,17 @@
         @if (PingState.SelectedPing == null)
         {
             <p>
-                <em>no ping selected</em>
+                <em>@Localization.PingPage.NoPingSelected</em>
             </p>
         }
         else
         {
-            <h4>Selected Ping</h4>
+            <h4>@CommonVocabulary.Selected @Localization.PingPage.Ping</h4>
             <p>
-                <em>Originally created at: @(PingState.SelectedPing.Created.ToString("G"))</em><br>
-                <em>Id: @(PingState.SelectedPing.Id)</em><br>
-                <em>Origin: @(PingState.PingResultOrigin)</em><br>
-                <em>Message: @(PingState.SelectedPing.Message)</em>
+                <em>@Localization.PingPage.OriginallyCreatedAt @(PingState.SelectedPing.Created.ToString("G"))</em><br>
+                <em>@Localization.PingPage.Id @(PingState.SelectedPing.Id)</em><br>
+                <em>@Localization.PingPage.Origin @(PingState.PingResultOrigin)</em><br>
+                <em>@CommonVocabulary.Message: @(PingState.SelectedPing.Message)</em>
             </p>
         }
     </div>
@@ -37,13 +39,13 @@
         <button @onclick="@RequestSelected"
                 class="btn btn-primary"
                 type="button">
-            @Localization.PingPage.RequestPing
+            @string.Format(Localization.PingPage.LoadSomething, Localization.PingPage.Ping)
         </button>
 
         <button @onclick="@RequestAll"
                 class="btn btn-primary"
                 type="button">
-            @Localization.PingPage.RequestAllPings
+            @string.Format(Localization.PingPage.LoadSomething, CommonVocabulary.All)
         </button>
     </div>
 
@@ -54,34 +56,34 @@
         <button @onclick="@CreateDelayed"
                 class="btn btn-primary"
                 type="button">
-            @Localization.PingPage.CreatePingDelayed
+            @string.Format(UserActions.GenerateSomething, Localization.PingPage.PingDelayed)
         </button>
 
         <button @onclick="@Create"
                 class="btn btn-primary"
-                type="button">
-            @Localization.PingPage.CreatePing
+                type="button">            
+            @string.Format(UserActions.GenerateSomething, Localization.PingPage.Ping)
         </button>
     </div>
 
     <div class="flex-container">
-        <label for="ThrowOnConsume">Consume Exception</label>
+        <label for="ThrowOnConsume">@Localization.PingPage.ConsumeException</label>
         <input @bind-value="ThrowOnConsume"
                type="checkbox" id="ThrowOnConsume" name="ThrowOnConsume" />
 
-        <label for="ThrowOnRetry">Throw On Retry</label>
+        <label for="ThrowOnRetry">@Localization.PingPage.ThrowOnRetry</label>
         <input @bind-value="ThrowOnRetry"
                type="checkbox" id="ThrowOnRetry" name="ThrowOnRetry" />
     </div>
 
     <div class="flex-container">
-        <label for="LastActivity">Last activity</label>
+        <label for="LastActivity">@Localization.PingPage.LastActivity</label>
         <div id="LastActivity">@LastActivity</div>
     </div>
 
     <div class="flex-container">
-        <label for="ControllerApi">Controller-API</label>
-        <div id="ControllerApi"><a href="/api/ping" target="_blank">API.GetPings</a></div>
+        <label for="ControllerApi">@Localization.PingPage.ControllerApi</label>
+        <div id="ControllerApi"><a href="/api/ping" target="_blank">@Localization.PingPage.ApiGetPings</a></div>
     </div>
 
     @if (!string.IsNullOrEmpty(LastError))
@@ -118,7 +120,7 @@
     @if (PingState.StoredPings == null)
     {
         <p>
-            <em>Loading...</em>
+            <em>@Localization.PingPage.Loading</em>
         </p>
     }
     else
@@ -134,8 +136,8 @@
                 <PropertyColumn Property="@(item => item.Id)" />
                 <PropertyColumn Property="@(item => item.RequestId)" />
                 <PropertyColumn Property="@(item => item.Created)" />
-                <TemplateColumn Title="API">
-                    <a href=@("/api/ping/" + context.Id.ToString()) target="_blank">Get</a>
+                <TemplateColumn Title="@Localization.PingPage.Api">
+                    <a href=@("/api/ping/" + context.Id.ToString()) target="_blank">@string.Format(UserActions.GetSomething, Localization.PingPage.Ping)</a>
                 </TemplateColumn>
             </ChildContent>
         </Grid>

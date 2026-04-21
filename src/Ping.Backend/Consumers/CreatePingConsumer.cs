@@ -62,7 +62,7 @@ public sealed class CreatePingConsumer(IInstanceInformationProvider provider, IS
         try
         {
             var pingWithId = _dbContext.Pings.Add(pingToCreate).Entity;
-            if (await _dbContext.Instance.SaveChangesAsync(context.CancellationToken) > 0)
+            if (await _dbContext.SaveChangesAsync(context.CancellationToken) > 0)
             {
                 await context.Publish(new PingCreated(pingWithId.Id, pingWithId.Created, pingWithId.RequestId, pingWithId.Message ?? "No Message", context.CorrelationId));
             }

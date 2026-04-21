@@ -117,19 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CreatePing" xml:space="preserve">
-    <value>Create Ping</value>
+  <data name="PingDelayed" xml:space="preserve">
+    <value>Ping Delayed</value>
   </data>
-  <data name="DeletePing" xml:space="preserve">
-    <value>Delete Ping</value>
+  <data name="LoadSomething" xml:space="preserve">
+    <value>Load {0}</value>
   </data>
-  <data name="CreatePingDelayed" xml:space="preserve">
-    <value>Create Ping Delayed</value>
+  <data name="Ping" xml:space="preserve">
+    <value>Ping</value>
   </data>
-  <data name="RequestAllPings" xml:space="preserve">
-    <value>Reload All Pings</value>
+  <data name="NoPingSelected" xml:space="preserve">
+    <value>No ping selected</value>
   </data>
-  <data name="RequestPing" xml:space="preserve">
-    <value>Reload Ping</value>
+  <data name="PingToBackend" xml:space="preserve">
+    <value>Ping to backend</value>
+  </data>
+  <data name="OriginallyCreatedAt" xml:space="preserve">
+    <value>Originally created at:</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id:</value>
+  </data>
+  <data name="Origin" xml:space="preserve">
+    <value>Origin:</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="ConsumeException" xml:space="preserve">
+    <value>Consume Exception</value>
+  </data>
+  <data name="ThrowOnRetry" xml:space="preserve">
+    <value>Throw On Retry</value>
+  </data>
+  <data name="LastActivity" xml:space="preserve">
+    <value>Last activity</value>
+  </data>
+  <data name="ControllerApi" xml:space="preserve">
+    <value>Controller-API</value>
+  </data>
+  <data name="ApiGetPings" xml:space="preserve">
+    <value>API.GetPings</value>
+  </data>
+  <data name="Api" xml:space="preserve">
+    <value>API</value>
+  </data>
+  <data name="Get" xml:space="preserve">
+    <value>Get</value>
   </data>
 </root>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Sdk.Client.Enums;
 using Sdk.Client.NotificationArea.Services;
+using ViciOne.Ui.MonochromeIcons.Core.Enums;
 
 namespace Ping.Client.Counter.NotificationArea;
 
@@ -12,8 +12,8 @@ public sealed partial class CounterNotificationElementIcon : ComponentBase, IDis
     public void Dispose()
         => NotificationElementState.Changed -= OnNotificationElementStateChanged;
 
-    private MaterialDesignIconName GetName()
-        => NotificationElementState.IsActive ? MaterialDesignIconName.ProgressClock : MaterialDesignIconName.ClockOutline;
+    private MonochromeIconName GetName()
+        => NotificationElementState.IsActive ? MonochromeIconName.Timer : MonochromeIconName.TimeOutLight;
 
     protected override void OnInitialized()
         => NotificationElementState.Changed += OnNotificationElementStateChanged;

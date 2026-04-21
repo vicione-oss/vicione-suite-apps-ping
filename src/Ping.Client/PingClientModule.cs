@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Ping.Client.Counter.ControlPanels;
+using Ping.Client.Counter.ControlPanels.Services;
 using Ping.Client.Counter.Services;
 using Ping.Client.Ping;
 using Ping.Client.Ping.Services;
@@ -30,8 +31,10 @@ public sealed class PingClientModule : ClientModule
         services.AddNavTiles<PingClientModule>();
         services.AddNotificationElements<PingClientModule>();
 
-        services.AddControlPanel<PingClientModule, GeneralControlPanel, ControlPanelState>()
-            .WithAutoDiscovery<GeneralControlPanelDescriptor>();
+        services.AddControlPanel<PingClientModule, GeneralControlPanel, GeneralControlPanelState>()
+            .WithAutoDiscovery<GeneralControlPanelDescriptor>()
+            .WithResetHandler<GeneralControlPanelResetHandler>();
+
         services.AddControlPanel<PingClientModule, NotificationControlPanel, ControlPanelState>();
 
         // ping

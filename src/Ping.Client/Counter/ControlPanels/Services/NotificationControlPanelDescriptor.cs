@@ -1,7 +1,7 @@
 ﻿using Sdk.Client.ControlPanels.Services;
 using Sdk.Client.Modules;
 
-namespace Ping.Client.Counter.ControlPanels;
+namespace Ping.Client.Counter.ControlPanels.Services;
 
 public sealed class NotificationControlPanelDescriptor(Func<string> title) : IControlPanelDescriptor<NotificationControlPanel>
 {

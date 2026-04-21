@@ -16,6 +16,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="ViciOne.Suite.Sdk.Client" />
+    <PackageReference Include="ViciOne.Ui.Localization" />
     <PackageReference Include="ViciOne.Ui.MonochromeIcons.Assets">
       <!-- avoids include of CSS isolation bundle -->
       <PrivateAssets>all</PrivateAssets>
@@ -51,15 +52,11 @@
     <Compile Update="Ping\Localization\PingPage.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DependentUpon>PingPage.resx</DependentUpon>
     </Compile>
     <Compile Update="Ping\Localization\Common.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Builder\Localization\Common.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Common.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -77,10 +74,6 @@
       <LastGenOutput>PingPage.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Ping\Localization\Common.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Common.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Builder\Localization\Common.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Common.Designer.cs</LastGenOutput>
     </EmbeddedResource>

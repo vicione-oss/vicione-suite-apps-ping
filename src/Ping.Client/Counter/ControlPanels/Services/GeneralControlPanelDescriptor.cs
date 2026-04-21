@@ -2,7 +2,7 @@
 using Sdk.Client.Modules;
 using ViciOne.Ui.Localization.Resources;
 
-namespace Ping.Client.Counter.ControlPanels;
+namespace Ping.Client.Counter.ControlPanels.Services;
 
 public sealed class GeneralControlPanelDescriptor : IControlPanelDescriptor<GeneralControlPanel>
 {

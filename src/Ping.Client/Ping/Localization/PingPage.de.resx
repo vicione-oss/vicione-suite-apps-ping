@@ -117,19 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CreatePing" xml:space="preserve">
-    <value>Neuer Ping</value>
+  <data name="PingDelayed" xml:space="preserve">
+    <value>Pong Verzögert</value>
   </data>
-  <data name="DeletePing" xml:space="preserve">
-    <value>Ping Entfernen</value>
+  <data name="LoadSomething" xml:space="preserve">
+    <value>{0} Laden</value>
   </data>
-  <data name="CreatePingDelayed" xml:space="preserve">
-    <value>Neuer Ping Verzögert</value>
+  <data name="Ping" xml:space="preserve">
+    <value>Pong</value>
   </data>
-  <data name="RequestAllPings" xml:space="preserve">
-    <value>Alle Pings Laden</value>
+  <data name="NoPingSelected" xml:space="preserve">
+    <value>Kein Pong ausgewählt</value>
   </data>
-  <data name="RequestPing" xml:space="preserve">
-    <value>Ping Laden</value>
+  <data name="PingToBackend" xml:space="preserve">
+    <value>Pong ans Backend</value>
+  </data>
+  <data name="OriginallyCreatedAt" xml:space="preserve">
+    <value>Ursprünglich erstellt am:</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id:</value>
+  </data>
+  <data name="Origin" xml:space="preserve">
+    <value>Herkunft:</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Laden...</value>
+  </data>
+  <data name="ConsumeException" xml:space="preserve">
+    <value>Verarbeitung Ausnahme</value>
+  </data>
+  <data name="ThrowOnRetry" xml:space="preserve">
+    <value>Ausnahme bei Wiederholung</value>
+  </data>
+  <data name="LastActivity" xml:space="preserve">
+    <value>Letzte Aktivität</value>
+  </data>
+  <data name="ControllerApi" xml:space="preserve">
+    <value>Controller-API</value>
+  </data>
+  <data name="ApiGetPings" xml:space="preserve">
+    <value>API.GetPings</value>
+  </data>
+  <data name="Api" xml:space="preserve">
+    <value>API</value>
+  </data>
+  <data name="Get" xml:space="preserve">
+    <value>Abrufen</value>
   </data>
 </root>

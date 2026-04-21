@@ -2,8 +2,9 @@
 @using Sdk.Client.Components.Settings.Expanders
 @using Sdk.Client.ControlPanels.Components
 @using Sdk.Client.ControlPanels.Services
+@using Client.Counter.ControlPanels.Services
 
-@inherits CounterControlPanelBase<ControlPanelState>
+@inherits CounterControlPanelBase<GeneralControlPanelState>
 
 <ControlPanelPage Title="Dirty state">
     <DescriptionBanner Title="Lorem ipsum">
@@ -11,9 +12,9 @@
     </DescriptionBanner>
 
     <SettingsLayout>
-        <SettingsGroup Title="Edit" Subline="Settings related to edits" Expanded="@_editSettingsGroupExpanded">
+        <SettingsGroup Title="Edit" Subline="Settings related to edits" Expanded="@State.EditSettingsGroupExpanded">
             <Expander>
-                <ComboBoxExpander Items="@_editSettingsGroupComboBoxItems" ValueSelector="@(i => i.Value)" TextSelector="@(i => i.Text)" @bind-Value="_editSettingsGroupExpanded" />
+                <ComboBoxExpander Items="@State.EditSettingsGroupComboBoxItems" ValueSelector="@(i => i.Value)" TextSelector="@(i => i.Text)" @bind-Value="State.EditSettingsGroupExpanded" />
             </Expander>
 
             <ChildContent>
@@ -27,10 +28,10 @@
         </SettingsGroup>
 
         <SettingsGroup Title="Information"
-                       Subline="@(_settingsInformationKind == SettingsInformationKind.A ? $"Select any value but {SettingsInformationKind.A} to hide information" : $"Select {SettingsInformationKind.A} to show information")"
-                       Expanded="@(_settingsInformationKind == SettingsInformationKind.A)">
+                       Subline="@(State.SettingsInformationKind == SettingsInformationKind.A ? $"Select any value but {SettingsInformationKind.A} to hide information" : $"Select {SettingsInformationKind.A} to show information")"
+                       Expanded="@(State.SettingsInformationKind == SettingsInformationKind.A)">
             <Expander>
-                <ComboBoxExpander Items="@(Enum.GetValues<SettingsInformationKind>())" @bind-Value="_settingsInformationKind" />
+                <ComboBoxExpander Items="@(Enum.GetValues<SettingsInformationKind>())" @bind-Value="State.SettingsInformationKind" />
             </Expander>
 
             <ChildContent>
@@ -51,7 +52,7 @@
             </ChildContent>
         </SettingsGroup>
 
-        <SettingsGroup Title="More information" @bind-Expanded="@_moreInformationSettingsGroupExpanded">
+        <SettingsGroup Title="More information" @bind-Expanded="@State.MoreInformationSettingsGroupExpanded">
             <ChildContent>
                 <SettingsInformation>
                     <p>
@@ -70,9 +71,9 @@
             </ChildContent>
         </SettingsGroup>
 
-        <SettingsGroup Title="Addendum" Expanded="@_addendumSettingsGroupExpanded">
+        <SettingsGroup Title="Addendum" Expanded="@State.AddSettingsGroupExpanded">
             <Expander>
-                <SwitchExpander @bind-Value="@_addendumSettingsGroupExpanded" />
+                <SwitchExpander @bind-Value="@State.AddSettingsGroupExpanded" />
             </Expander>
 
             <ChildContent>
@@ -90,9 +91,9 @@
     </DescriptionBanner>
 
     <SettingsLayout>
-        <SettingsGroup Title="Notifications" @bind-Expanded="_notificationsSettingsGroupExpanded">
+        <SettingsGroup Title="Notifications" @bind-Expanded="State.NotificationsSettingsGroupExpanded">
             <SettingsField Label="Subject template">
-                <SettingsFieldTextBox Placeholder="Name" @bind-Value="@_notificationSubjectTemplate" />
+                <SettingsFieldTextBox Placeholder="Name" @bind-Value="@State.NotificationSubjectTemplate" />
             </SettingsField>
 
             <SettingsField Label="Content template">
@@ -103,18 +104,18 @@
                 <SettingsFieldButton Text="Edit" />
             </SettingsField>
 
-            @for (var i = 0; i < _notificationMetadata.Count; i++)
+            @for (var i = 0; i < State.Metadata.Count; i++)
             {
                 var label = i == 0 ? "Meta data" : null;
-                var notificationMetadata = _notificationMetadata[i];
+                var notificationMetadata = State.Metadata[i];
 
                 <SettingsField Label="@label" @key="notificationMetadata">
                     <SettingsFieldTextBox Placeholder="@notificationMetadata.Placeholder" @bind-Value="@notificationMetadata.Value"  />
                 </SettingsField>
             }
 
-            <SettingsStepper MinusEnabled="@(_notificationMetadata.Count > 1)"
-                             PlusEnabled="@(_notificationMetadata.Count < 5)"
+            <SettingsStepper MinusEnabled="@(State.Metadata.Count > 1)"
+                             PlusEnabled="@(State.Metadata.Count < 5)"
                              OnMinus="@RemoveNotificationMetadata"
                              OnPlus="@AddNotificationMetadata" />
 
@@ -122,7 +123,7 @@
                 18 sent, 16 acknowledged
             </SettingsField>
 
-            <SettingsGroup Title="Hidden UI elements" Subline="Hidden UI elements related to notifications" @bind-Expanded="_notificationsHiddenUiElementsSettingsGroupExpanded">
+            <SettingsGroup Title="Hidden UI elements" Subline="Hidden UI elements related to notifications" @bind-Expanded="State.NotificationsHiddenUiElementsSettingsGroupExpanded">
                 <SettingsField Label="Control panels">
                     <SettingsFieldButton Text="Unlock" OnClick="@OnUnlockNotificationSettings" />
                 </SettingsField>
@@ -137,7 +138,7 @@
     </SettingsLayout>
 </ControlPanelPage>
 
-@if (_hasReloadingTab)
+@if (State.HasReloadingTab)
 {
     <ControlPanelPage Title="Reloading">
         <DescriptionBanner Title="Vero eos et accusam">
@@ -151,7 +152,7 @@
                 </SettingsField>
             </SettingsGroup>
 
-            <SettingsGroup Title="Popup" @bind-Expanded="_reloadingPopupSettingsGroupExpanded">
+            <SettingsGroup Title="Popup" @bind-Expanded="State.ReloadingPopupSettingsGroupExpanded">
                 <SettingsField Label="Action">
                     <SettingsFieldButton Text="Reload" OnClick="@OnReloadPopup" />
                 </SettingsField>

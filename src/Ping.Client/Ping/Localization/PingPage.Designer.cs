@@ -19,7 +19,7 @@ namespace Ping.Client.Ping.Localization {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class PingPage {
@@ -61,47 +61,146 @@ namespace Ping.Client.Ping.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create Ping.
+        ///   Looks up a localized string similar to Load {0}.
         /// </summary>
-        internal static string CreatePing {
+        internal static string LoadSomething {
             get {
-                return ResourceManager.GetString("CreatePing", resourceCulture);
+                return ResourceManager.GetString("LoadSomething", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create Ping Delayed.
+        ///   Looks up a localized string similar to No ping selected.
         /// </summary>
-        internal static string CreatePingDelayed {
+        internal static string NoPingSelected {
             get {
-                return ResourceManager.GetString("CreatePingDelayed", resourceCulture);
+                return ResourceManager.GetString("NoPingSelected", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete Ping.
+        ///   Looks up a localized string similar to Ping.
         /// </summary>
-        internal static string DeletePing {
+        internal static string Ping {
             get {
-                return ResourceManager.GetString("DeletePing", resourceCulture);
+                return ResourceManager.GetString("Ping", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reload All Pings.
+        ///   Looks up a localized string similar to Ping Delayed.
         /// </summary>
-        internal static string RequestAllPings {
+        internal static string PingDelayed {
             get {
-                return ResourceManager.GetString("RequestAllPings", resourceCulture);
+                return ResourceManager.GetString("PingDelayed", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reload Ping.
+        ///   Looks up a localized string similar to Ping to backend.
         /// </summary>
-        internal static string RequestPing {
+        internal static string PingToBackend {
             get {
-                return ResourceManager.GetString("RequestPing", resourceCulture);
+                return ResourceManager.GetString("PingToBackend", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Originally created at:.
+        /// </summary>
+        internal static string OriginallyCreatedAt {
+            get {
+                return ResourceManager.GetString("OriginallyCreatedAt", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Id:.
+        /// </summary>
+        internal static string Id {
+            get {
+                return ResourceManager.GetString("Id", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Origin:.
+        /// </summary>
+        internal static string Origin {
+            get {
+                return ResourceManager.GetString("Origin", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Loading....
+        /// </summary>
+        internal static string Loading {
+            get {
+                return ResourceManager.GetString("Loading", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Consume Exception.
+        /// </summary>
+        internal static string ConsumeException {
+            get {
+                return ResourceManager.GetString("ConsumeException", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Throw On Retry.
+        /// </summary>
+        internal static string ThrowOnRetry {
+            get {
+                return ResourceManager.GetString("ThrowOnRetry", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Last activity.
+        /// </summary>
+        internal static string LastActivity {
+            get {
+                return ResourceManager.GetString("LastActivity", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Controller-API.
+        /// </summary>
+        internal static string ControllerApi {
+            get {
+                return ResourceManager.GetString("ControllerApi", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to API.GetPings.
+        /// </summary>
+        internal static string ApiGetPings {
+            get {
+                return ResourceManager.GetString("ApiGetPings", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to API.
+        /// </summary>
+        internal static string Api {
+            get {
+                return ResourceManager.GetString("Api", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Get.
+        /// </summary>
+        internal static string Get {
+            get {
+                return ResourceManager.GetString("Get", resourceCulture);
             }
         }
     }

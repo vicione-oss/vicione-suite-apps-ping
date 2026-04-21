@@ -10,5 +10,5 @@ public sealed class PingBackendModule : BackendModule
 {
     public override IModuleInitializer ModuleInitializer => new DefaultModuleInitializer<IPingDbContext>();
     public override void ConfigureServices(IServiceCollection services, IConfiguration config, IMvcBuilder builder)
-        => services.AddDynamicDbContext<IPingDbContext, PingDbContextSqlite, PingDbContextPostgres>(this);
+        => services.AddModuleDbContext<IPingDbContext, PingDbContextSqlite, PingDbContextPostgres>(this);
 }
