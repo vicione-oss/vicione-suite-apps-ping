@@ -407,3 +407,6 @@ tests/ComponentTest/Test.Client/wwwroot/*
 **/*.razor.css
 
 # font files
+
+# Files unpacked by target 'ConfigureDesignTargets'
+**/Styles/design
