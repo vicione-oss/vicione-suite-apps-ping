@@ -1,0 +1,3 @@
+[tools]
+dotnet = "10.0.202"
+nodejs = "24"

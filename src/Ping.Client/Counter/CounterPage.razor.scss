@@ -1,5 +1,19 @@
-@use "./../../../shared/styles/colors";
+@use "../Styles/design/colors";
 @use "./../../../shared/styles/variables";
+
+@use "sass:color";
+
+$color-content: #555555;
+$color-content-hover: #666666;
+$color-content-dark: rgb(64, 64, 64);
+$color-content-dark-hover: color.adjust($color-content-dark, $lightness: +10%);
+$color-content-dark-disabled: #595959;
+
+$color-disabled: rgb(166, 166, 166);
+$color-disabled-dark: color.adjust($color-disabled, $lightness: -10%);
+
+$color-accent-dark: #db8400;
+$color-accent-background: #ffbd59;
 
 .counter-page {
     padding: variables.$content-padding;
@@ -13,62 +27,62 @@
             div {
                 width: 200px;
                 height: 60px;
-                border: 1px solid colors.$color-border;
+                border: 1px solid colors.$border;
                 margin: 0 10px 10px 0;
                 padding: 2px 0 0 5px;
             }
         }
 
         .background {
-            background-color: colors.$color-background;
+            background-color: colors.$background-darker;
         }
 
         .background:hover {
-            background-color: colors.$color-background-hover;
+            background-color: colors.$background-darker-hover;
         }
 
         .background-dark {
-            background-color: colors.$color-background-dark;
+            background-color: colors.$background-dark;
         }
 
         .content {
-            background-color: colors.$color-content;
+            background-color: $color-content;
         }
 
         .content:hover {
-            background-color: colors.$color-content-hover;
+            background-color: $color-content-hover;
         }
 
         .content-dark {
-            background-color: colors.$color-content-dark;
+            background-color: $color-content-dark;
         }
 
         .content-dark:hover {
-            background-color: colors.$color-content-dark-hover;
+            background-color: $color-content-dark-hover;
         }
 
         .disabled {
-            background-color: colors.$color-disabled;
+            background-color: $color-disabled;
         }
 
         .disabled-dark {
-            background-color: colors.$color-disabled-dark;
+            background-color: $color-disabled-dark;
         }
 
         .accent {
-            background-color: colors.$color-accent;
+            background-color: colors.$accent;
         }
 
         .accent:hover {
-            background-color: colors.$color-accent-hover;
+            background-color: colors.$accent-hover;
         }
 
         .accent-dark {
-            background-color: colors.$color-accent-dark;
+            background-color: $color-accent-dark;
         }
 
         .accent-background {
-            background-color: colors.$color-accent-background;
+            background-color: $color-accent-background;
         }
     }
 }
