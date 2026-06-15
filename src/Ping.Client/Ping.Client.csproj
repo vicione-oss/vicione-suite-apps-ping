@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Include="Counter\NotificationArea\CounterNotificationElementIcon.razor.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
 
@@ -87,6 +91,8 @@
     <ItemGroup>
       <MonochromeIcon Include="on-off" Size="16;24;32" />
       <MonochromeIcon Include="external-link" Size="16" />
+      <MonochromeIcon Include="timer" Size="32" />
+      <MonochromeIcon Include="time-out-light" Size="32" />
     </ItemGroup>
 
     <PropertyGroup>

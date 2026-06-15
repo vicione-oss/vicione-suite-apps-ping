@@ -1,0 +1,8 @@
+﻿@use "../../Styles/icons/monochrome-icons" with (
+    $svg-base-url: "./icons/monochrome-icons",
+    $base-selector: ".notification-icon-container ::deep"
+);
+
+.notification-icon-container {
+    display: contents;
+}

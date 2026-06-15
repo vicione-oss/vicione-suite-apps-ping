@@ -1,3 +1,14 @@
 ﻿@using ViciOne.Ui.MonochromeIcons.Components
+@using ViciOne.Ui.MonochromeIcons.Core.Enums
 
-<MonochromeIcon Name="@GetName()" />
+<div class="notification-icon-container">
+    @if (NotificationElementState.IsActive)
+    {
+        <MonochromeIcon Name="MonochromeIconName.TimeOutLight" Size="MonochromeIconSize.Medium" />
+    }
+    else
+    {
+        <MonochromeIcon Name="MonochromeIconName.Timer" Size="MonochromeIconSize.Medium" />
+    }
+</div>
+
