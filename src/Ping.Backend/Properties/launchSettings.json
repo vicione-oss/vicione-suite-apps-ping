@@ -2,10 +2,11 @@
   "profiles": {
     "Ping.SuiteDebug": {
         "commandName": "Executable",
-        "executablePath": "\\vo-suite\\src\\Core.OS\\bin\\Debug\\net9.0\\ViciOne.Suite.Core.OS.exe",
-        "workingDirectory": "\\vo-suite\\src\\Core.OS\\bin\\Debug\\net9.0",
+        "executablePath": "\\vo-suite\\src\\Core.OS\\bin\\Debug\\net10.0\\ViciOne.Suite.Core.OS.exe",
+        "workingDirectory": "\\vo-suite\\src\\Core.OS\\bin\\Debug\\net10.0",
         "environmentVariables": {
-            "ASPNETCORE_ENVIRONMENT": "Development"
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "ModuleLoader__ModuleDebugPaths__0": "$(SolutionDir)\\src"
         }
     }
   }
