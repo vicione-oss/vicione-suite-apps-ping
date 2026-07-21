@@ -173,7 +173,7 @@ include:
       artifacts:
         - "build/**/*"
   # Promote staging to production (on tag) ###
-  - component: $CI_SERVER_FQDN/vicione-oss/tooling/components/jfrog/promote@v2.0.1
+  - component: $CI_SERVER_FQDN/vicione-oss/tooling/components/jfrog/promote@v2.0.0
     inputs:
       name: "Public Release"
       stage: release-public
@@ -181,3 +181,12 @@ include:
       source_repository: "vicione-suite-staging"
       destination_repository: "vicione-suite"
       remote_path: "modules/${MODULE_FULLNAME}"
+
+validate-renovate-config:
+  stage: .pre
+  image: renovate/renovate:43.272.5
+  script:
+    - renovate-config-validator --strict
+  rules:
+    - changes:
+        - renovate.json
