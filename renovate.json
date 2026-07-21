@@ -8,58 +8,12 @@
   ],
   "packageRules": [
     {
-      "description": "Disable GitLab CI Docker image updates",
-      "matchManagers": [
-        "gitlabci"
-      ],
-      "matchDepTypes": [
-        "image",
-        "image-name",
-        "service-image"
-      ],
+      "matchManagers": ["gitlabci"],
       "enabled": false
     },
     {
-      "description": "Disable GitLab CI repositories outside vicione-oss",
-      "matchManagers": [
-        "gitlabci"
-      ],
-      "matchDepTypes": [
-        "repository"
-      ],
-      "enabled": false
-    },
-    {
-      "description": "Disable major updates of vicione-oss components",
-      "matchManagers": [
-        "gitlabci"
-      ],
-      "matchDatasources": [
-        "gitlab-tags"
-      ],
-      "matchDepTypes": [
-        "repository"
-      ],
-      "matchUpdateTypes": [
-        "major"
-      ],
-      "enabled": false
-    },
-    {
-      "description": "Allow only minor and patch updates of vicione-oss components",
-      "matchManagers": [
-        "gitlabci"
-      ],
-      "matchDatasources": [
-        "gitlab-tags"
-      ],
-      "matchDepTypes": [
-        "repository"
-      ],
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
+      "matchManagers": ["gitlabci"],
+      "matchDepTypes": ["repository"],
       "enabled": true
     }
   ]
