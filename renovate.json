@@ -1,0 +1,47 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+      "local>vicione-oss/tooling/renovate-orchestrator"
+    ],
+    "packageRules": [
+      {
+        "description": "Enable minor and patch updates for vicione-oss GitLab components",
+        "matchManagers": [
+          "gitlabci"
+        ],
+        "matchDatasources": [
+          "gitlab-tags"
+        ],
+        "matchDepTypes": [
+          "repository"
+        ],
+        "matchPackageNames": [
+          "vicione-oss/**"
+        ],
+        "matchUpdateTypes": [
+          "minor",
+          "patch"
+        ],
+        "enabled": true
+      },
+      {
+        "description": "Disable major updates for vicione-oss GitLab components",
+        "matchManagers": [
+          "gitlabci"
+        ],
+        "matchDatasources": [
+          "gitlab-tags"
+        ],
+        "matchDepTypes": [
+          "repository"
+        ],
+        "matchPackageNames": [
+          "vicione-oss/**"
+        ],
+        "matchUpdateTypes": [
+          "major"
+        ],
+        "enabled": false
+      }
+    ]
+  }
