@@ -1,47 +1,75 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-      "local>vicione-oss/tooling/renovate-orchestrator"
-    ],
-    "packageRules": [
-      {
-        "description": "Enable minor and patch updates for vicione-oss GitLab components",
-        "matchManagers": [
-          "gitlabci"
-        ],
-        "matchDatasources": [
-          "gitlab-tags"
-        ],
-        "matchDepTypes": [
-          "repository"
-        ],
-        "matchPackageNames": [
-          "vicione-oss/**"
-        ],
-        "matchUpdateTypes": [
-          "minor",
-          "patch"
-        ],
-        "enabled": true
-      },
-      {
-        "description": "Disable major updates for vicione-oss GitLab components",
-        "matchManagers": [
-          "gitlabci"
-        ],
-        "matchDatasources": [
-          "gitlab-tags"
-        ],
-        "matchDepTypes": [
-          "repository"
-        ],
-        "matchPackageNames": [
-          "vicione-oss/**"
-        ],
-        "matchUpdateTypes": [
-          "major"
-        ],
-        "enabled": false
-      }
-    ]
-  }
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "local>vicione-oss/tooling/renovate-orchestrator"
+  ],
+  "enabledManagers": [
+    "gitlabci"
+  ],
+  "packageRules": [
+    {
+      "description": "Disable GitLab CI Docker image updates",
+      "matchManagers": [
+        "gitlabci"
+      ],
+      "matchDepTypes": [
+        "image",
+        "image-name",
+        "service-image"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Disable GitLab CI repositories outside vicione-oss",
+      "matchManagers": [
+        "gitlabci"
+      ],
+      "matchDepTypes": [
+        "repository"
+      ],
+      "matchPackageNames": [
+        "!/^vicione-oss\\//"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Disable major updates of vicione-oss components",
+      "matchManagers": [
+        "gitlabci"
+      ],
+      "matchDatasources": [
+        "gitlab-tags"
+      ],
+      "matchDepTypes": [
+        "repository"
+      ],
+      "matchPackageNames": [
+        "/^vicione-oss\\//"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Allow only minor and patch updates of vicione-oss components",
+      "matchManagers": [
+        "gitlabci"
+      ],
+      "matchDatasources": [
+        "gitlab-tags"
+      ],
+      "matchDepTypes": [
+        "repository"
+      ],
+      "matchPackageNames": [
+        "/^vicione-oss\\//"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "enabled": true
+    }
+  ]
+}
