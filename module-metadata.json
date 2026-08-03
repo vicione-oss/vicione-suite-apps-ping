@@ -3,7 +3,7 @@
     "Title": "Suite Ping Demo",
     "Description": "Use this demo module to use pings and counter.",
     "Version": "__VERSION__",
-    "MinSuiteSdkVersion": "2.1.0",
+    "MinSuiteSdkVersion": "2.2.0",
     "Company": "ifm software gmbh",
     "ProjectUrl": "https://gitlab.com/vicione-oss/vicione/suite-apps/ping",
     "ReadmeUrl": "https://gitlab.com/vicione-oss/vicione/suite-apps/ping/-/blob/master/README.md?ref_type=heads",
