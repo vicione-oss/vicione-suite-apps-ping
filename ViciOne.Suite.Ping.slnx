@@ -16,6 +16,7 @@
     <File Path="mise.toml" />
     <File Path="module-metadata.json" />
     <File Path="NuGet.Config" />
+    <File Path="package.json" />
     <File Path="README.md" />
     <File Path="renovate.json" />
     <File Path="testconfig.json" />
