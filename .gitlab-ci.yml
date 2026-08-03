@@ -50,15 +50,8 @@
     when: manual
     allow_failure: true
 
-.npm_install: &npm_install
-  - cd src/Ping.Client
+.install_npm_packages: &install_npm_packages
   - npm ci
-  - cd -
-
-.npm_run_eslint: &npm_run_eslint
-  - cd src/Ping.Client
-  - npx eslint .
-  - cd -
 
 ### Defaults ###
 variables:
@@ -79,6 +72,7 @@ stages:
 
 ### CI Components ###
 include:
+  ### .pre
   - component: $CI_SERVER_FQDN/vicione-oss/tooling/components/version/version-calc@v1.2.0
   - component: $CI_SERVER_FQDN/vicione-oss/tooling/components/module-packaging/runtime-identifier@v0.2.0
     inputs:
@@ -86,6 +80,7 @@ include:
       rules: *rules
       tags:
         - saas-linux-small-amd64
+  ### Restore
   - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-restore@2
     inputs:
       image: ${IMAGE_NAME}
@@ -93,9 +88,10 @@ include:
       before_script:
         - *activate_mise
         - *update_nuget_source_ro
+        - *install_npm_packages
       tags:
         - ${RUNNER_TAG}
-  ### Metadata for Module ###
+  ### Metadata for Module
   - component: $CI_SERVER_FQDN/vicione-oss/tooling/components/module-packaging/metadata@v0.2.0
     inputs:
       project: "src/${PROJECT_NAME}.Deployment/${PROJECT_NAME}.Deployment.csproj"
@@ -105,7 +101,7 @@ include:
       stage: metadata
       tags:
         - saas-linux-small-amd64
-  ### Test & Build ###
+  ### Build
   - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-build@2
     inputs:
       image: ${IMAGE_NAME}
@@ -115,6 +111,7 @@ include:
         - *update_nuget_source_ro
       tags:
         - ${RUNNER_TAG}
+  ### Test
   - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-test@2
     inputs:
       image: ${IMAGE_NAME}
@@ -125,7 +122,7 @@ include:
         - *update_nuget_source_ro
       tags:
         - ${RUNNER_TAG}
-  ### Publish Module ###
+  ### Publish Module
   - component: $CI_SERVER_FQDN/vicione-oss/tooling/components/module-packaging/publish-module@v0.2.0
     inputs:
       module_name: "${PROJECT_NAME}"
@@ -138,7 +135,7 @@ include:
         - apt update && apt install -y jq
       tags:
         - saas-linux-small-amd64
-  ### Package Module ###
+  ### Package Module
   - component: $CI_SERVER_FQDN/vicione-oss/tooling/components/module-packaging/package-module@v0.2.0
     inputs:
       rules: *rules
@@ -148,7 +145,7 @@ include:
         - apt update && apt install -y jq zip
       tags:
         - saas-linux-small-amd64
-  # Prerelease to dev repository ###
+  # Prerelease to dev repository
   - component: $CI_SERVER_FQDN/vicione-oss/tooling/components/jfrog/release@v2.0.1
     inputs:
       name: "Prerelease to JFrog"
@@ -160,7 +157,7 @@ include:
         - "Package Module"
       artifacts:
         - "build/**/*"
-  # Release to staging (on tag) ###
+  # Release to staging (on tag)
   - component: $CI_SERVER_FQDN/vicione-oss/tooling/components/jfrog/release@v2.0.1
     inputs:
       name: "Release to JFrog"
@@ -172,7 +169,7 @@ include:
         - "Package Module"
       artifacts:
         - "build/**/*"
-  # Promote staging to production (on tag) ###
+  # Promote staging to production (on tag)
   - component: $CI_SERVER_FQDN/vicione-oss/tooling/components/jfrog/promote@v2.0.1
     inputs:
       name: "Public Release"
@@ -182,7 +179,8 @@ include:
       destination_repository: "vicione-suite"
       remote_path: "modules/${MODULE_FULLNAME}"
 
-validate-renovate-config:
+### Renovate ###
+Validate renovate.json:
   stage: .pre
   image: renovate/renovate:43.272.5
   script:
@@ -190,3 +188,18 @@ validate-renovate-config:
   rules:
     - changes:
         - renovate.json
+
+### ESLint ###
+ESLint:
+  stage: build
+  image: ${IMAGE_NAME}
+  needs: ["dotnet Build"]
+  before_script:
+    - *activate_mise
+    - *update_nuget_source_ro
+    - *install_npm_packages
+  script:
+    - npm run lint
+  rules: *rules
+  tags:
+    - ${RUNNER_TAG}

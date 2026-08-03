@@ -8,6 +8,5 @@
 
 - Clone repository
 - Open console at root of cloned repository
-- Navigate to `src/Ping.Client` folder
 - Run `npm ci`
 - Run `dotnet build`
