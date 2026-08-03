@@ -52,7 +52,7 @@
 
 .npm_install: &npm_install
   - cd src/Ping.Client
-  - npm install
+  - npm ci
   - cd -
 
 .npm_run_eslint: &npm_run_eslint
