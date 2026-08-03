@@ -2,11 +2,19 @@
 
 ## 0.14.0 - Unreleased
 
+### Updated
+
+- `.NET` framework, updated to version `10.0.10`
+- `AspNetCore.SassCompiler` package, update to version `1.102.0`
+- `ViciOne.Suite.Sdk` packages, update to version `2.2.0`
+- `ViciOne.Ui.Design` package, update to version `2.3.0`
+- `ViciOne.Ui.Localization` package, update to version `3.5.0`
+
 ## 0.13.0 - 2026-06-15
 
 ### Added
 
-- Added `ViciOne.Suite.Sdk.Localization` package version `3.4.0` as a dependency to get localization resources for the application
+- Added `ViciOne.Ui.Localization` package version `3.4.0` as a dependency to get localization resources for the application
 
 ### Updated
 

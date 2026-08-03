@@ -25,12 +25,6 @@
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="ViciOne.Ui.Localization" />
-    <PackageReference Include="ViciOne.Ui.MonochromeIcons.Assets">
-      <!-- avoids include of CSS isolation bundle -->
-      <PrivateAssets>all</PrivateAssets>
-      <!-- don't depend on assembly at runtime -->
-      <ExcludeAssets>runtime</ExcludeAssets>
-    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -86,20 +80,6 @@
       <LastGenOutput>Common.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
-  <Target Name="ConfigureMonochromeIcons" BeforeTargets="BeforeMonochromeIconTargets">
-    <ItemGroup>
-      <MonochromeIcon Include="on-off" Size="16;24;32" />
-      <MonochromeIcon Include="external-link" Size="16" />
-      <MonochromeIcon Include="timer" Size="32" />
-      <MonochromeIcon Include="time-out-light" Size="32" />
-    </ItemGroup>
-
-    <PropertyGroup>
-      <MonochromeIconSvgOutputFolder>$(MSBuildProjectDirectory)/wwwroot/icons/monochrome-icons</MonochromeIconSvgOutputFolder>
-      <MonochromeIconScssOutputFolder>$(MSBuildProjectDirectory)/Styles/icons/monochrome-icons</MonochromeIconScssOutputFolder>
-    </PropertyGroup>
-  </Target>
 
   <Target Name="ConfigureDesignTargets" BeforeTargets="BeforeDesignTargets">
     <PropertyGroup>
