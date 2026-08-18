@@ -91,6 +91,12 @@ include:
         - *install_npm_packages
       tags:
         - ${RUNNER_TAG}
+  ### Renovate configuration validation
+  - component: $CI_SERVER_FQDN/vicione-oss/tooling/components/renovate/configuration-validation@v1.0.0
+    inputs:
+      rules: *rules
+      tags:
+        - ${RUNNER_TAG}
   ### Metadata for Module
   - component: $CI_SERVER_FQDN/vicione-oss/tooling/components/module-packaging/metadata@v0.2.0
     inputs:
@@ -178,16 +184,6 @@ include:
       source_repository: "vicione-suite-staging"
       destination_repository: "vicione-suite"
       remote_path: "modules/${MODULE_FULLNAME}"
-
-### Renovate ###
-Validate renovate.json:
-  stage: .pre
-  image: renovate/renovate:43.272.5
-  script:
-    - renovate-config-validator --strict
-  rules:
-    - changes:
-        - renovate.json
 
 ### ESLint ###
 ESLint:
