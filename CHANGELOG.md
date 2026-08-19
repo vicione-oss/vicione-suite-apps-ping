@@ -1,12 +1,12 @@
 # Changelog
 
-## 0.14.0 - Unreleased
+## 1.0.0 - 2026-08-19
 
 ### Updated
 
-- `.NET` framework, updated to version `10.0.10`
+- `.NET` framework, updated to version `10.0.11`
 - `AspNetCore.SassCompiler` package, update to version `1.102.0`
-- `ViciOne.Suite.Sdk` packages, update to version `2.2.0`
+- `ViciOne.Suite.Sdk` packages, update to version `3.0.0`
 - `ViciOne.Ui.Design` package, update to version `2.3.0`
 - `ViciOne.Ui.Localization` package, update to version `3.5.0`
 
