@@ -2,11 +2,15 @@
 using Ping.Client.Counter.Services;
 using Sdk.Client.Services;
 using Sdk.MessageBanner.Contracts;
+using ViciOne.Ui.Blazor.Components.ComboBox;
 
 namespace Ping.Client.Counter;
 
 public sealed partial class CounterPage
 {
+    private readonly IReadOnlyList<ComboBoxItem<MessageType, string>> _messageTypes =
+        [.. Enum.GetValues<MessageType>().Select(type => new ComboBoxItem<MessageType, string> { Value = type, Text = type.ToString() })];
+
     private string? _description;
     private MessageType _messageType;
 
@@ -27,20 +31,11 @@ public sealed partial class CounterPage
     private void IncrementCounter()
         => SimpleCounter.Increment();
 
-    private void OnDescriptionChanged(ChangeEventArgs e)
-    {
-        if (e.Value is not null)
-            _description = (string)e.Value;
-    }
+    private void OnDescriptionChanged(string? description)
+        => _description = description;
 
-    private void OnMessageTypeChanged(ChangeEventArgs e)
-    {
-        if (e.Value is not null)
-        {
-            if (Enum.TryParse((string)e.Value, out MessageType type))
-                _messageType = type;
-        }
-    }
+    private void OnMessageTypeChanged(MessageType messageType)
+        => _messageType = messageType;
 
     private void ResetCounter()
         => SimpleCounter.Reset();

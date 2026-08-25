@@ -29,6 +29,9 @@ public sealed class CounterPageTests
             ctx.Services.AddSingleton(Substitute.For<IActiveNotificationElementPolicy>());
             ctx.Services.AddSingleton(Substitute.For<IJsInterop>());
             ctx.Services.AddSingleton(Substitute.For<IMessageBannerService>());
+
+            ctx.JSInterop.Mode = JSRuntimeMode.Loose;
+
             var sut = ctx.Render<CounterPage>();
 
             sut.Find("#increment-result").Children[0].MarkupMatches("<em>You have clicked 0 times</em>");

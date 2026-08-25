@@ -1,9 +1,7 @@
-﻿@using ViciOne.Ui.MonochromeIcons.Components
-@using ViciOne.Ui.MonochromeIcons.Core.Enums
-<button @onclick="@(() => NavigationManager.NavigateTo(PingClientModule.CounterPageRoute, false))"
-        class="btn">
+﻿@using ViciOne.Ui.Blazor.Components.Button
+@using ViciOne.Ui.Blazor.Components.Button.Enums
 
-    <MonochromeIcon Name="MonochromeIconName.ExternalLink" Size="MonochromeIconSize.Small" CssClass="icon" />
-
-    @Localization.CounterPage.OpenCounterPage
-</button>
+<Button Size="@ButtonSize.Small"
+        IconCssClass="@_externalLinkIconCssClasses"
+        Text="@Localization.CounterPage.OpenCounterPage"
+        OnClick="@NavigateToCounterPage" />

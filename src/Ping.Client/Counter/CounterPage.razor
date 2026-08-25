@@ -1,4 +1,8 @@
 @using Sdk.MessageBanner.Contracts;
+@using ViciOne.Ui.Blazor.Components.Button
+@using ViciOne.Ui.Blazor.Components.Button.Enums
+@using ViciOne.Ui.Blazor.Components.ComboBox
+@using ViciOne.Ui.Blazor.Components.TextBox
 
 @inherits ModulePageBase<PingClientModule>
 @attribute [Route(PingClientModule.CounterPageRoute)]
@@ -10,31 +14,24 @@
         <p>@Localization.Common.ModuleDescription</p>
 
         <p>
-            <button @onclick="@DecrementCounter"
-                    class="btn btn-primary"
-                    id="decrement-button"
-                    type="button">
-                @Localization.CounterPage.DecrementCounter
-            </button>
+            <Button Id="decrement-button"
+                    Size="@ButtonSize.Small"
+                    Text="@Localization.CounterPage.DecrementCounter"
+                    OnClick="@DecrementCounter" />
 
-            <button @onclick="@ResetCounter"
-                    class="btn btn-primary"
-                    id="reset-button"
-                    type="button">
-                @Localization.CounterPage.ResetCounter
-            </button>
+            <Button Id="reset-button"
+                    Size="@ButtonSize.Small"
+                    Text="@Localization.CounterPage.ResetCounter"
+                    OnClick="@ResetCounter" />
 
-            <button @onclick="@IncrementCounter"
-                    class="btn btn-primary"
-                    id="increment-button"
-                    type="button">
-                @Localization.CounterPage.IncrementCounter
-            </button>
+            <Button Id="increment-button"
+                    Size="@ButtonSize.Small"
+                    Text="@Localization.CounterPage.IncrementCounter"
+                    OnClick="@IncrementCounter" />
 
-            <button @onclick="@CallIsolatedJavaScript"
-                    class="btn btn-primary">
-                @Localization.CounterPage.CallJavascript
-            </button>
+            <Button Size="@ButtonSize.Small"
+                    Text="@Localization.CounterPage.CallJavascript"
+                    OnClick="@CallIsolatedJavaScript" />
         </p>
         <p id="increment-result">
             <em>@string.Format(Localization.CounterPage.ClickedXTimesFormat, SimpleCounter.Value)</em>
@@ -45,24 +42,24 @@
         <h4>MessageBanner</h4>
         <div class="message-banner-form">
             <label>Type: </label>
-            <select name="Type" @onchange="OnMessageTypeChanged">
-                @foreach (var type in Enum.GetValues(typeof(MessageType)))
-                {
-                    <option value="@type">@type</option>
-                }
-            </select>
+            <ComboBox TItem="ComboBoxItem<MessageType, string>"
+                      TValue="MessageType"
+                      Items="@_messageTypes"
+                      ValueSelector="@(item => item.Value)"
+                      TextSelector="@(item => item.Text)"
+                      Value="@_messageType"
+                      ValueChanged="@OnMessageTypeChanged" />
 
             <label>Description: </label>
-            <input type="text" @onchange="OnDescriptionChanged" />
+            <TextBox Value="@_description" ValueChanged="@OnDescriptionChanged" />
 
-            <button class="btn btn-primary"
-                    @onclick="() => MessageBannerService.ShowMessageBanner(_messageType, _description)">
-                @Localization.CounterPage.ShowBanner
-            </button>
-            <button class="btn btn-primary"
-                    @onclick="MessageBannerService.CloseMessageBanner">
-                @Localization.CounterPage.RemoveBanner
-            </button>
+            <Button Size="@ButtonSize.Small"
+                    Text="@Localization.CounterPage.ShowBanner"
+                    OnClick="@(() => MessageBannerService.ShowMessageBanner(_messageType, _description))" />
+
+            <Button Size="@ButtonSize.Small"
+                    Text="@Localization.CounterPage.RemoveBanner"
+                    OnClick="@MessageBannerService.CloseMessageBanner" />
         </div>
     </div>
 
