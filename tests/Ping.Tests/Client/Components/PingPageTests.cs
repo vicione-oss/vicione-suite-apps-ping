@@ -8,6 +8,8 @@ using Ping.Public.Requests;
 using Sdk.Testing.Client;
 using ViciOne.Ui.Blazor.Components.CheckBox.Extensions;
 using ViciOne.Ui.Blazor.Components.Grid.Extensions;
+using ViciOne.Ui.Blazor.Components.Popup.Extensions;
+using ViciOne.Ui.Blazor.Components.SpinEdit.Extensions;
 using Xunit;
 
 namespace Ping.Tests.Client.Components;
@@ -15,10 +17,10 @@ namespace Ping.Tests.Client.Components;
 public sealed class PingPageTests
 {
     [Fact]
-    public void PageGetsRendered()
+    public async Task PageGetsRendered()
     {
         // Arrange
-        using var ctx = new BunitContext();
+        await using var ctx = new BunitContext();
         ctx.SetupSuiteServices(setup =>
         {
             setup.Services.AddLocalization<PingClientModule>();
@@ -30,6 +32,8 @@ public sealed class PingPageTests
         ctx.Services.AddSingleton(new PingState());
         ctx.Services.AddGridItemSelection<Guid>(typeof(PingPageServiceKey));
         ctx.Services.AddCheckBox();
+        ctx.Services.AddIntSpinEdit();
+        ctx.Services.AddPopup();
 
         ctx.JSInterop.Mode = JSRuntimeMode.Loose;
 

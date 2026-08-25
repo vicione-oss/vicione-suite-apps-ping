@@ -27,13 +27,14 @@ public sealed partial class PingPage :
     [Inject(Key = typeof(PingPageServiceKey))] private IGridItemSelection<Guid> PingGridItemSelection { get; set; } = default!;
     [Inject] private PingState PingState { get; set; } = default!;
 
-    private int CreateCommandDelayMs { get; set; } = 10 * 1000;// sek * ms
+    private int CreateCommandDelayMs { get; set; } = 10 * 1000; // Seconds * Milliseconds
     private string? LastActivity { get; set; }
     private string? LastError { get; set; }
     protected override string PageTitle => Localization.Common.ModuleTitle;
     private string? SelectedIdString { get; set; }
     private bool ThrowOnConsume { get; set; }
     private bool ThrowOnRetry { get; set; }
+    private bool ShowDialog { get; set; }
 
     public async Task Consume(ClientContext<PingCreated> context, CancellationToken cancellationToken)
     {
@@ -111,6 +112,7 @@ public sealed partial class PingPage :
 
         LastActivity = null;
         LastError = $"Error occured:{Environment.NewLine}{context.Message.Error.Message}";
+        ShowDialog = true;
         await InvokeAsync(StateHasChanged);
     }
 

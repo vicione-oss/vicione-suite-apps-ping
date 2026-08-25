@@ -1,9 +1,16 @@
+@using ViciOne.Ui.Blazor.Components.Button
+@using ViciOne.Ui.Blazor.Components.Button.Enums
+@using ViciOne.Ui.Blazor.Components.CheckBox
+@using ViciOne.Ui.Blazor.Components.Dialog.Components
 @using ViciOne.Ui.Blazor.Components.Grid.Components
 @using ViciOne.Ui.Blazor.Components.Grid.Components.ActionButtons
 @using ViciOne.Ui.Blazor.Components.Grid.Components.Columns
+@using ViciOne.Ui.Blazor.Components.SpinEdit
+@using ViciOne.Ui.Blazor.Components.TextBox
 @using ViciOne.Ui.Localization.Resources
 
 @attribute [Route(PingClientModule.PingPageRoute)]
+
 @inherits ModulePageBase<PingClientModule>
 
 <div class="ping-page">
@@ -33,89 +40,49 @@
     </div>
 
     <div class="flex-container">
-        <input @bind-value="@(SelectedIdString)"
-               type="text" class="form-control" readonly />
+        <TextBox Value="@SelectedIdString" ReadOnly />
 
-        <button @onclick="@RequestSelected"
-                class="btn btn-primary"
-                type="button">
-            @string.Format(Localization.PingPage.LoadSomething, Localization.PingPage.Ping)
-        </button>
+        <Button Size="@ButtonSize.Small"
+                Text="@string.Format(Localization.PingPage.LoadSomething, Localization.PingPage.Ping)"
+                OnClick="@RequestSelected" />
 
-        <button @onclick="@RequestAll"
-                class="btn btn-primary"
-                type="button">
-            @string.Format(Localization.PingPage.LoadSomething, CommonVocabulary.All)
-        </button>
+        <Button Size="@ButtonSize.Small"
+                Text="@string.Format(Localization.PingPage.LoadSomething, CommonVocabulary.All)"
+                OnClick="@RequestAll" />
     </div>
 
     <div class="flex-container">
-        <input @bind-value="@CreateCommandDelayMs"
-               type="text" class="form-control" readonly />
+        <SpinEdit Value="@CreateCommandDelayMs"
+                  Interval="1"
+                  Minimum="10"
+                  Maximum="@int.MaxValue" />
 
-        <button @onclick="@CreateDelayed"
-                class="btn btn-primary"
-                type="button">
-            @string.Format(UserActions.GenerateSomething, Localization.PingPage.PingDelayed)
-        </button>
+        <Button Size="@ButtonSize.Small"
+                Text="@string.Format(UserActions.GenerateSomething, Localization.PingPage.PingDelayed)"
+                OnClick="@CreateDelayed" />
 
-        <button @onclick="@Create"
-                class="btn btn-primary"
-                type="button">            
-            @string.Format(UserActions.GenerateSomething, Localization.PingPage.Ping)
-        </button>
+        <Button Size="@ButtonSize.Small"
+                Text="@string.Format(UserActions.GenerateSomething, Localization.PingPage.Ping)"
+                OnClick="@Create" />
     </div>
 
     <div class="flex-container">
-        <label for="ThrowOnConsume">@Localization.PingPage.ConsumeException</label>
-        <input @bind-value="ThrowOnConsume"
-               type="checkbox" id="ThrowOnConsume" name="ThrowOnConsume" />
+        <label>@Localization.PingPage.ConsumeException</label>
+        <CheckBox @bind-Value="ThrowOnConsume" />
 
-        <label for="ThrowOnRetry">@Localization.PingPage.ThrowOnRetry</label>
-        <input @bind-value="ThrowOnRetry"
-               type="checkbox" id="ThrowOnRetry" name="ThrowOnRetry" />
+        <label>@Localization.PingPage.ThrowOnRetry</label>
+        <CheckBox @bind-Value="ThrowOnRetry" />
     </div>
 
     <div class="flex-container">
-        <label for="LastActivity">@Localization.PingPage.LastActivity</label>
-        <div id="LastActivity">@LastActivity</div>
+        <label>@Localization.PingPage.LastActivity</label>
+        <div>@LastActivity</div>
     </div>
 
     <div class="flex-container">
-        <label for="ControllerApi">@Localization.PingPage.ControllerApi</label>
-        <div id="ControllerApi"><a href="/api/ping" target="_blank">@Localization.PingPage.ApiGetPings</a></div>
+        <label>@Localization.PingPage.ControllerApi</label>
+        <div><a href="/api/ping" target="_blank">@Localization.PingPage.ApiGetPings</a></div>
     </div>
-
-    @if (!string.IsNullOrEmpty(LastError))
-    {
-        <div class="position-fixed bottom-0 right-0 p-3"
-             style="z-index: 5; right: 0; bottom: 0;">
-
-            <div aria-atomic="true"
-                 aria-live="assertive"
-                 class="toast hide"
-                 data-delay="2000"
-                 id="liveToast"
-                 role="alert">
-
-                <div class="toast-header">
-                    <img src="..." class="rounded mr-2" alt="...">
-                    <strong class="mr-auto">Bootstrap</strong>
-                    <small>83 ms ago</small>
-                    <button aria-label="Close"
-                            class="ml-2 mb-1 close"
-                            data-dismiss="toast"
-                            type="button">
-
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="toast-body">
-                    @LastError
-                </div>
-            </div>
-        </div>
-    }
 
     @if (PingState.StoredPings == null)
     {
@@ -144,3 +111,20 @@
     }
 
 </div>
+
+<Dialog HeaderText="@CommonPhrases.AnErrorOccurred"
+        @bind-Visible="@ShowDialog"
+        Height="35%"
+        Width="35%">
+
+    <Body>
+        <DialogBodyTextLayout>
+            @LastError
+        </DialogBodyTextLayout>
+    </Body>
+
+    <Footer>
+        <DialogFooterButton OnClick="@(() => ShowDialog = false)"
+                            Text="@CommonVocabulary.Ok" />
+    </Footer>
+</Dialog>

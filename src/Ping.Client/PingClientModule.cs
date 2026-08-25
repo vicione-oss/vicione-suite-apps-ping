@@ -12,7 +12,9 @@ using Sdk.Client.Modules;
 using Sdk.Client.Modules.Localization.Extensions;
 using Sdk.Client.NavTiles.Extensions;
 using Sdk.Client.NotificationArea.Extensions;
+using ViciOne.Ui.Blazor.Components.CheckBox.Extensions;
 using ViciOne.Ui.Blazor.Components.Grid.Extensions;
+using ViciOne.Ui.Blazor.Components.SpinEdit.Extensions;
 
 namespace Ping.Client;
 
@@ -38,6 +40,9 @@ public sealed class PingClientModule : ClientModule
         services.AddControlPanel<PingClientModule, NotificationControlPanel, ControlPanelState>();
 
         // ping
+        services.AddCheckBox();
+        services.AddIntSpinEdit();
+
         services.AddScoped<PingState>();
         services.AddGridItemSelection<Guid>(typeof(PingPageServiceKey));
 
