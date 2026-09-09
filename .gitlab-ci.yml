@@ -81,7 +81,7 @@ include:
       tags:
         - saas-linux-small-amd64
   ### Restore
-  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-restore@v2.6.1
+  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-restore@v2.7.0
     inputs:
       image: ${IMAGE_NAME}
       rules: *rules
@@ -108,7 +108,7 @@ include:
       tags:
         - saas-linux-small-amd64
   ### Build
-  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-build@v2.6.1
+  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-build@v2.7.0
     inputs:
       image: ${IMAGE_NAME}
       rules: *rules
@@ -118,7 +118,7 @@ include:
       tags:
         - ${RUNNER_TAG}
   ### Test
-  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-test@v2.6.1
+  - component: $CI_SERVER_FQDN/vicione-oss/tooling/dotnet-component/dotnet-test@v2.7.0
     inputs:
       image: ${IMAGE_NAME}
       rules: *rules
