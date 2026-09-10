@@ -47,8 +47,6 @@
     <IsPublishable>true</IsPublishable>
     <!-- Microsoft Testing Platform command line experience -->
     <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
-
-    <TestingPlatformConfigurationFilePath>$(MSBuildThisFileDirectory)/tests/testconfig.json</TestingPlatformConfigurationFilePath>
   </PropertyGroup>
 
   <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('Backend')) Or $(MSBuildProjectName.EndsWith('Client'))">
