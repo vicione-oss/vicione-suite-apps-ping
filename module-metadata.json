@@ -3,10 +3,10 @@
     "Title": "Suite Ping Demo",
     "Description": "Use this demo module to use pings and counter.",
     "Version": "__VERSION__",
-    "MinSuiteSdkVersion": "3.0.0",
+    "MinSuiteSdkVersion": "3.1.0",
     "Company": "ViciOne open automation GmbH",
     "ProjectUrl": "https://gitlab.com/vicione-oss/vicione/suite-apps/ping",
     "ReadmeUrl": "https://gitlab.com/vicione-oss/vicione/suite-apps/ping/-/blob/master/README.md?ref_type=heads",
-    "Published": "2026-08-19T12:00:00",
+    "Published": "2026-09-25T12:00:00",
     "Options": []
 }

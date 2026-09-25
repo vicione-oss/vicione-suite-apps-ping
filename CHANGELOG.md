@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.0 - 2026-09-25
+
+### Updated
+
+- `.NET` framework, updated to version `10.0.12`
+- `ViciOne.Suite.Sdk` packages, update to version `3.1.0`
+- `ViciOne.Ui.Localization` package, update to version `3.6.0`
+- `xunit.v3.mtp-v2` package, update to version `4.0.1`
+
 ## 1.0.0 - 2026-08-19
 
 ### Updated
