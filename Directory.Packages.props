@@ -1,8 +1,8 @@
 ﻿<Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <ViciOneSuiteSdkVersion>3.0.0</ViciOneSuiteSdkVersion>
-    <DotNetVersion>10.0.11</DotNetVersion>
+    <ViciOneSuiteSdkVersion>3.1.0</ViciOneSuiteSdkVersion>
+    <DotNetVersion>10.0.12</DotNetVersion>
   </PropertyGroup>
   <ItemGroup>
     <GlobalPackageReference Include="ViciOne.CodeAnalysis" Version="1.6.0" />
@@ -14,11 +14,11 @@
     <PackageVersion Include="ViciOne.Suite.Sdk.Client" Version="$(ViciOneSuiteSdkVersion)" />
     <PackageVersion Include="ViciOne.Suite.Sdk.Deployment" Version="$(ViciOneSuiteSdkVersion)" />
     <PackageVersion Include="ViciOne.Ui.Design" Version="2.3.0" />
-    <PackageVersion Include="ViciOne.Ui.Localization" Version="3.5.0" />
+    <PackageVersion Include="ViciOne.Ui.Localization" Version="3.6.0" />
     <!--Used for tests only:-->
     <PackageVersion Include="AutoFixture" Version="4.18.1" />
     <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.7.0" />
     <PackageVersion Include="ViciOne.Suite.Sdk.Testing" Version="$(ViciOneSuiteSdkVersion)" />
-    <PackageVersion Include="xunit.v3.mtp-v2" Version="3.2.2" />
+    <PackageVersion Include="xunit.v3.mtp-v2" Version="4.0.1" />
   </ItemGroup>
 </Project>
