@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.0 - 2026-10-02
+
+### Updated
+
+- `AspNetCore.SassCompiler` package, update to version `1.105.1`
+- `Microsoft.Testing.Extensions.CodeCoverage` package, update to version `18.11.2`
+- `ViciOne.Suite.Sdk` packages, update to version `3.2.0`
+- `ViciOne.Ui.Design` package, update to version `2.5.0`
+
 ## 1.1.0 - 2026-09-25
 
 ### Updated
