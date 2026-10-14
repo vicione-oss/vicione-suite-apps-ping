@@ -3,6 +3,8 @@
   "extends": [
     "local>vicione-oss/tooling/renovate-orchestrator"
   ],
+  "dependencyDashboard": true,
+  "dependencyDashboardApproval": true,
   "enabledManagers": [
     "gitlabci",
     "nuget"
@@ -25,9 +27,7 @@
       "matchManagers": ["nuget"],
       "matchFileNames": ["Directory.Packages.props"],
       "matchJsonata": ["sharedVariableName = 'ViciOneSuiteSdkVersion'"],
-      "enabled": true,
-      "dependencyDashboard": true,
-      "dependencyDashboardApproval": true,
+      "enabled": true,      
       "rebaseWhen": "never",
       "groupName": "ViciOne.Suite.Sdk packages",
       "separateMajorMinor": true,
