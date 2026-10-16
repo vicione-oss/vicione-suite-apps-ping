@@ -30,14 +30,14 @@
       },
       "ViciOne.Suite.Sdk.Backend": {
         "type": "Direct",
-        "requested": "[3.2.0, )",
-        "resolved": "3.2.0",
-        "contentHash": "dMTjTvOEv8c60VaTFoxuEJL7C2BqXFRprfn2k8LSNcfN7rV4zhNiEZdQB6ODwzrcfBGqfNos+zkWOkGm85XxtA==",
+        "requested": "[3.5.0, )",
+        "resolved": "3.5.0",
+        "contentHash": "RrH3qt/wUYwE876PKXtxkAQQqpM2FcynxplCmYGTJn/BmZqWHhUO+sJZFqJsK8PiwgSbJYmDvC9lJA2KIH91Yw==",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "10.0.12",
           "Microsoft.EntityFrameworkCore.Sqlite": "10.0.12",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.3",
-          "ViciOne.Suite.Sdk": "3.2.0"
+          "ViciOne.Suite.Sdk": "3.5.0"
         }
       },
       "Humanizer.Core": {
@@ -460,14 +460,14 @@
       "ViciOne.Suite.Ping.Public": {
         "type": "Project",
         "dependencies": {
-          "ViciOne.Suite.Sdk": "[3.2.0, )"
+          "ViciOne.Suite.Sdk": "[3.5.0, )"
         }
       },
       "ViciOne.Suite.Sdk": {
         "type": "CentralTransitive",
-        "requested": "[3.2.0, )",
-        "resolved": "3.2.0",
-        "contentHash": "WGfKrrak10PGyGRMbH8OmYiuWmLtQrPwf4IxQtBodb92tBmeTCYdq/TXLQ0vLT/REPiXvYpXPELOu7k5hHvKqw==",
+        "requested": "[3.5.0, )",
+        "resolved": "3.5.0",
+        "contentHash": "dNJZ+x7u8XyhOTtdR3R5f4UhLo2L6nvqY+NlUqMQNT0pRa2w82VQ4sOjdxuQNEXxH9fQ2vBGaZf1yHkzFI110g==",
         "dependencies": {
           "MassTransit.Abstractions": "8.5.11",
           "Microsoft.AspNetCore.Authorization": "10.0.12",
