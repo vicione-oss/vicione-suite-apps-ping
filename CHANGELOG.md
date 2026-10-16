@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.0 - Unreleased
+
+### Updated
+
+- `Microsoft.Testing.Extensions.CodeCoverage` package, update to version `18.12.0`
+- `ViciOne.Suite.Sdk` packages, update to version `3.5.0`
+
 ## 1.2.0 - 2026-10-02
 
 ### Updated
