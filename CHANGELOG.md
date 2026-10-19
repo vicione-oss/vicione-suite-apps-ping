@@ -5,6 +5,7 @@
 ### Updated
 
 - `Microsoft.Testing.Extensions.CodeCoverage` package, update to version `18.12.0`
+- `Microsoft.TypeScript.MSBuild` package, update to version `7.0.1`
 - `ViciOne.Suite.Sdk` packages, update to version `3.5.0`
 
 ## 1.2.0 - 2026-10-02
