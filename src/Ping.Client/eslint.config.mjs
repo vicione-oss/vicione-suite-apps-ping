@@ -1,15 +1,17 @@
-import xoTypeScript from 'eslint-config-xo-typescript';
+import path from 'node:path';
+import eslintConfigXo from 'eslint-config-xo';
 
-// https://github.com/xojs/xo/issues/798
-const xoTypeScriptPatched = xoTypeScript.filter(config => config.language?.startsWith('json/') !== true);
+const indent = 4;
 
-export default [
+const config = [
     {
         ignores: [
-            'wwwroot/js/*.js'
+            'wwwroot/js/*.js',
+            '**/*.css',
+            '**/*.json'
         ]
     },
-    ...xoTypeScriptPatched,
+    ...eslintConfigXo({ space: indent }),
     {
         languageOptions: {
             parserOptions: {
@@ -19,7 +21,7 @@ export default [
 
                     // Use of import.meta.dirname instead of ./ to fix config read error when opening a .ts file in VS although the change
                     // still does not fix broken linting in VS, see https://developercommunity.microsoft.com/t/Use-updated-flat-config-eslintconfigj/10703354
-                    defaultProject: `${import.meta.dirname}/tsconfig.json`
+                    defaultProject: path.join(import.meta.dirname, 'tsconfig.json')
                 }
             }
         }
@@ -29,13 +31,16 @@ export default [
             'no-unused-vars': 'error',
             curly: ['error', 'multi-or-nest', 'consistent'],
             '@stylistic/padded-blocks': 'off',
-            '@stylistic/indent': ['error', 4],
-            '@stylistic/indent-binary-ops': ['error', 4],
+            '@stylistic/indent': ['error', indent],
+            '@stylistic/indent-binary-ops': ['error', indent],
             '@stylistic/comma-dangle': ['error', 'never'],
             '@stylistic/function-paren-newline': ['error', 'consistent'],
             '@stylistic/curly-newline': ['error', { minElements: 1 }],
             '@stylistic/object-curly-spacing': ['error', 'always'],
-            '@typescript-eslint/no-empty-object-type': ['error', { allowInterfaces: 'with-single-extends' }]
+            '@typescript-eslint/no-empty-object-type': ['error', { allowInterfaces: 'with-single-extends' }],
+
+            // Files and directories are named after the .NET types and projects they belong to
+            'unicorn/filename-case': 'off'
         }
     },
 
@@ -43,10 +48,10 @@ export default [
     {
         files: ['eslint.config.mjs'],
         rules: {
-            '@typescript-eslint/no-unsafe-assignment': 'off',
-            '@typescript-eslint/no-unsafe-call': 'off',
-            '@typescript-eslint/no-unsafe-member-access': 'off',
-            '@typescript-eslint/naming-convention': 'off'
+            // The rule cannot read `package.json` because of its byte order mark and reports every import as undeclared
+            'import-x/no-extraneous-dependencies': 'off'
         }
     }
 ];
+
+export default config;
