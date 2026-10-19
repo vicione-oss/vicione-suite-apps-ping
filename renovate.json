@@ -5,39 +5,86 @@
   ],
   "dependencyDashboard": true,
   "dependencyDashboardApproval": true,
-  "enabledManagers": [
-    "gitlabci",
-    "nuget"
-  ],
+  "enabledManagers": [ "gitlabci", "nuget" ],
   "packageRules": [
     {
-      "matchManagers": ["gitlabci"],
+      "matchManagers": [ "gitlabci" ],
       "enabled": false
     },
     {
-      "matchManagers": ["gitlabci"],
-      "matchDepTypes": ["repository"],
+      "matchManagers": [ "gitlabci" ],
+      "matchDepTypes": [ "repository" ],
       "enabled": true
     },
     {
-      "matchManagers": ["nuget"],
+      "description": "MR configuration",
+      "matchManagers": [ "nuget" ],
+      "addLabels": [ "Dependencies", "Modernization" ],
+      "rebaseWhen": "auto",
+      "separateMajorMinor": true,
+      "separateMultipleMajor": true,
+      "separateMultipleMinor": true,
+      "separateMinorPatch": true
+    },
+    {
+      "description": "MR label for the update type, as it is not part of the naming. version:: is a scoped label, so GitLab keeps only one per MR: the most significant update in the MR wins",
+      "matchManagers": [ "nuget" ],
+      "matchUpdateTypes": [ "major", "minor", "patch" ],
+      "addLabels": [ "version::{{#if (includes (lookupArray upgrades 'updateType') 'major')}}major{{else}}{{#if (includes (lookupArray upgrades 'updateType') 'minor')}}minor{{else}}patch{{/if}}{{/if}}" ]
+    },
+    {
+      "description": "MR / commit naming",
+      "matchManagers": [ "nuget" ],
+      "semanticCommits": "disabled",
+      "commitMessagePrefix": "",
+      "commitMessageAction": "Update"
+    },
+    {
+      "description": "MR / commit naming for ungrouped updates",
+      "matchManagers": [ "nuget" ],
+      "commitMessageTopic": "{{{depName}}}",
+      "commitMessageExtra": "to {{{newVersion}}}"
+    },
+    {
+      "description": "MR / commit naming for grouped updates",
+      "matchManagers": [ "nuget" ],
+      "groupSingleUpdates": true,
+      "recreateWhen": "never",
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} ({{#each upgrades}}{{{depName}}}@{{{newVersion}}}{{#unless @last}}, {{/unless}}{{/each}})",
+        "commitMessageExtra": ""
+      }
+    },
+    {
+      "description": "Branch naming for ungrouped updates",
+      "matchManagers": [ "nuget" ],
+      "branchTopic": "update-{{{replace '\\.' '-' depNameSanitized}}}-to-{{{newMajor}}}-{{{newMinor}}}-{{{newPatch}}}"
+    },
+    {
+      "description": "Branch naming for grouped updates",
+      "matchManagers": [ "nuget" ],
+      "group": {
+        "branchTopic": "update-{{{replace '\\.' '-' (replace '^(major|minor|patch)-[0-9.]*-?' '' groupSlug)}}}"
+      }
+    },
+    {
+      "description": "NuGet: opt out of everything, then opt back in below",
+      "matchManagers": [ "nuget" ],
       "enabled": false
     },
     {
-      "matchManagers": ["nuget"],
-      "matchFileNames": ["Directory.Packages.props"],
-      "matchJsonata": ["sharedVariableName = 'ViciOneSuiteSdkVersion'"],
-      "enabled": true,      
-      "rebaseWhen": "never",
-      "groupName": "ViciOne.Suite.Sdk packages",
-      "separateMajorMinor": true,
-      "semanticCommits": "disabled",
-      "commitMessagePrefix": "",
-      "commitMessageAction": "Update to",
-      "commitMessageTopic": "ViciOne.Suite.Sdk",
-      "commitMessageExtra": "{{newVersion}}",
-      "branchTopic": "update-to-vicione-suite-sdk-{{newMajor}}-{{newMinor}}-{{newPatch}}",
-      "addLabels": ["Dependencies"]
+      "description": "ViciOne.Suite.Sdk packages pinned to $(ViciOneSuiteSdkVersion). They all move to the same version, so commitMessageTopic names the group and the version instead of listing every single package",
+      "matchManagers": [ "nuget" ],
+      "matchFileNames": [ "Directory.Packages.props" ],
+      "matchJsonata": [ "sharedVariableName = 'ViciOneSuiteSdkVersion'" ],
+      "enabled": true,
+      "groupName": "ViciOne.Suite.Sdk",
+      "groupSlug": "vicione-suite-sdk",
+      "group": {
+        "branchTopic": "update-{{{replace '\\.' '-' (replace '^(major|minor|patch)-[0-9.]*-?' '' groupSlug)}}}-to-{{{newMajor}}}-{{{newMinor}}}-{{{newPatch}}}",
+        "commitMessageTopic": "{{{groupName}}}",
+        "commitMessageExtra": "to {{{newVersion}}}"
+      }
     }
   ]
 }
